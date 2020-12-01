@@ -10,7 +10,7 @@ export default function()
     return(
         <DrawerNavigator.Navigator>
             <DrawerNavigator.Screen
-            name = "AdminHomeStack " component={AdminHomeStack}
+            name = "AdminHomeStack" component={AdminHomeStack}
             ></DrawerNavigator.Screen>
         </DrawerNavigator.Navigator>
     )
