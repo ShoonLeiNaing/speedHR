@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createAppContainer } from '@react-navigation/native';
-import SayargyiHome from './SayargyiHome'
+import SayargyiHome from './screens/SayargyiHome'
 
 const screens = {
     SayargyiHome : {
