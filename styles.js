@@ -6,29 +6,50 @@ export const styles = StyleSheet.create({
         padding:25,
     },
     headerBox : {
-        flex:1,
         flexDirection:"row",
         padding:10,
         backgroundColor:'pink',
        
     },
     headerBoxText : {
-        flex:0.4,
+        flex:4,
         alignItems:'center',
-      
+    },
 
+    ImageBox:{
+        flex:6,
     },
     title:{
-        marginVertical:20,
+        marginVertical:10,
         fontSize:20,
     },
     datebox:{
         backgroundColor:'#45F568',
-        paddingVertical:5,
+        paddingVertical:10,
         width:90,
     },
     date:{
         marginHorizontal:10,
         fontSize:15,
+    },
+    smallContainer:{
+        height:50,
+        width:"100%",
+        marginBottom:'7%',
+        backgroundColor:'pink',
+        shadowOffset: { width: 1, height: 1 },
+        shadowColor: '#333',
+        shadowOpacity: 0.4,
+        shadowRadius: 2,
+    },
+    scroll:{
+        marginVertical:'5%',
+        padding:'5%',
+    },
+    smallContainerText : {
+        textAlign:'center',
+        margin:'5%',
+        fontSize:20,
+        
     }
 })

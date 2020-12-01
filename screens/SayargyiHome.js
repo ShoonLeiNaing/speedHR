@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {Text,StyleSheet,View,FlatList,Image} from 'react-native';
+import {Text,StyleSheet,View,FlatList,Image,ScrollView} from 'react-native';
 import {styles} from '../styles'
 
 export default function SayargyiHome(){
@@ -12,11 +12,30 @@ export default function SayargyiHome(){
                         <Text style={styles.date}>11/2/2020</Text>
                     </View>
                 </View>
-                <View>
+                <View style={styles.ImageBox}>
                 <Image></Image>
                 </View>
             </View>
-            
+            <ScrollView style={styles.scroll}>
+                <View style={styles.smallContainer}>
+                    <Text style={styles.smallContainerText}>Welcome</Text>
+                </View>
+                 <View style={styles.smallContainer}>
+
+                </View>
+                <View style={styles.smallContainer}>
+
+                </View>
+                <View style={styles.smallContainer}>
+
+                </View>
+                <View style={styles.smallContainer}>
+
+                </View>
+                <View style={styles.smallContainer}>
+
+                </View>
+            </ScrollView>
         </View>
     )
 }
