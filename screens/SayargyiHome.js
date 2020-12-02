@@ -29,7 +29,7 @@ export default function SayargyiHome({navigation}){
                     </View>
                 </TouchableOpacity>
 
-                 <TouchableOpacity>
+                 <TouchableOpacity onPress={()=>navigation.navigate('AddTasks')}>
                     <View style={styles.smallContainer}>
                         <Text style={styles.smallContainerText}>Tasks</Text>
                         <AntDesign name="pluscircleo" size={24} color="black" style={styles.Icon}/>
@@ -53,7 +53,7 @@ export default function SayargyiHome({navigation}){
                         <AntDesign name="clockcircleo" size={24} color="black" style={styles.Icon}/>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.navigate('Notifications')}>
                     <View style={styles.smallContainer}>
                         <Text style={styles.smallContainerText}>Notifications</Text>
                         <MaterialIcons name="notifications-active" size={24} color="black" style={styles.Icon} />
