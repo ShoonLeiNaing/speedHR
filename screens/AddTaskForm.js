@@ -7,9 +7,6 @@ import { Feather } from '@expo/vector-icons';
 import TaskForm from './TaskForm';
 import { Button } from 'react-native-elements';
 
-
-
-
 export default function EmployeeList({route,navigation}) {
     const addTaskHandler =() =>{
         Alert.alert(
@@ -18,8 +15,7 @@ export default function EmployeeList({route,navigation}) {
             [    
                 { text:'No', onPress:()=>console.log('Task not added')},
                 { text:'Yes', onPress:()=>console.log('Task added')},
-            ]
-            
+            ]        
         )
     }
     var name=route.params.name;

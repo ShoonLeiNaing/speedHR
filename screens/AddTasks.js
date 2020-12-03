@@ -24,7 +24,7 @@ export default function EmployeeList({navigation}) {
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
-                  <Image  source={require('../assets/pic.jpg')} style={styles.Image}/>
+                  <Image  source={require('../assets/pic1.png')} style={styles.Image}/>
                 </View>
             </View>
         

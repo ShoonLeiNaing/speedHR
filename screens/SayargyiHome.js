@@ -17,12 +17,12 @@ export default function SayargyiHome({navigation}){
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
-                  <Image  source={require('../assets/pic.jpg')} style={styles.Image}/>
+                  <Image  source={require('../assets/pic3.png')} style={styles.Image}/>
                 </View>
             </View>
 
             <ScrollView style={styles.scroll}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.navigate('Newsfeed')}>
                     <View style={styles.smallContainer}>
                         <Text style={styles.smallContainerText}>Newsfeed</Text>
                         <FontAwesome name="newspaper-o" size={24} color="black" style={styles.Icon}/>
@@ -41,7 +41,7 @@ export default function SayargyiHome({navigation}){
                         <MaterialIcons name="person-outline" size={24} color="black" style={styles.Icon}/>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.navigate('ReportList')}>
                     <View style={styles.smallContainer}>
                         <Text style={styles.smallContainerText}>View Reports</Text>
                         <FontAwesome name="files-o" size={24} color="black" style={styles.Icon}/>

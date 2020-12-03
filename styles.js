@@ -3,7 +3,7 @@ import { Directions } from 'react-native-gesture-handler'
 
 export const styles = StyleSheet.create({
     container : {
-        padding:25,
+        padding:15,
         backgroundColor:'#BEE9E4',
         flex:1,
     },
@@ -11,6 +11,10 @@ export const styles = StyleSheet.create({
         flexDirection:"row",
         padding:10,
         backgroundColor:'white',
+        shadowOffset: { width: 1, height: 1 },
+        shadowColor: '#333',
+        shadowOpacity: 0.4,
+        shadowRadius: 2,
        
     },
     headerBoxText : {
@@ -27,6 +31,7 @@ export const styles = StyleSheet.create({
     Image:{
         height:'100%',
         width:'80%',
+        borderRadius:200
 
     },
     title:{

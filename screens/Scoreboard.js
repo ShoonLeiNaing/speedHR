@@ -17,13 +17,13 @@ export default function EmployeeList({navigation}) {
         <View style={styles.container}>
             <View style={styles.headerBox}>
                 <View style={styles.headerBoxText}>
-                    <Text style={styles.title}>Employees</Text>
+                    <Text style={styles.title}>Scoreboard</Text>
                     <View style={styles.datebox}>
                         <Text style={styles.date}>11/2/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
-                  <Image  source={require('../assets/pic.jpg')} style={styles.Image}/>
+                  <Image  source={require('../assets/pic6.png')} style={styles.Image}/>
                 </View>
             </View>
         

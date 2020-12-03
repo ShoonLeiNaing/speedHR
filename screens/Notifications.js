@@ -9,9 +9,9 @@ import { Entypo } from '@expo/vector-icons';
 
 export default function EmployeeList({navigation}) {
     const[noti,setNoti]=useState([
-        {notiText: "You have assigned a Task  Eat the breakfast "},
-        {notiText: "Kyaw Kyaw has assigned his report on Task “ Eat the breakfast “"},
-        {notiText: "You have assigned a Task  Eat the breakfast "},
+        {id:1,notiText: "You have assigned a Task  Eat the breakfast "},
+        {id:2,notiText: "Kyaw Kyaw has assigned his report on Task “ Eat the breakfast “"},
+        {id:3,notiText: "You have assigned a Task  Eat the breakfast "},
 
     ])
     
