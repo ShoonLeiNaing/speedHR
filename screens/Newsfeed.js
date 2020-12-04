@@ -11,7 +11,7 @@ import { Entypo } from '@expo/vector-icons';
 
 import { TextInput } from 'react-native-gesture-handler';
 
-export default function Newsfeed() {
+export default function Newsfeed({navigation}) {
     const [modalVisible, setModalVisible] = useState(false);
    
     const[post,setPost]=useState([
@@ -108,7 +108,7 @@ export default function Newsfeed() {
                             <Text style={{fontSize:15}}>{item.text}</Text>
                         </View>
                         <View style={postStyles.buttonContainer}>
-                            <Button  title="Comment" titleStyle={{fontSize:15,color:'black'}} buttonStyle={taskStyles.AddTaskButton}/>
+                            <Button onPress={()=>navigation.navigate('Comments')} title="Comment" titleStyle={{fontSize:15,color:'black'}} buttonStyle={taskStyles.AddTaskButton}/>
                         </View>
                     </View>
                 )} />           
@@ -119,7 +119,7 @@ export default function Newsfeed() {
     )
 }
 
-const postStyles = StyleSheet.create({
+export const postStyles = StyleSheet.create({
     postForm:{
         backgroundColor:'white',
         padding:2,

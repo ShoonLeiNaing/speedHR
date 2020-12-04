@@ -11,6 +11,7 @@ import Notifications from './screens/Notifications'
 import ReportList from './screens/ReportList'
 import ReportDetail from './screens/ReportDetail'
 import Newsfeed from './screens/Newsfeed'
+import Comments from './screens/Comments'
 
 
 const AdminHomeStack = createStackNavigator()
@@ -29,6 +30,7 @@ export default function()
             <AdminHomeStack.Screen name="ReportList" component={ReportList}></AdminHomeStack.Screen>
             <AdminHomeStack.Screen name="ReportDetail" component={ReportDetail}></AdminHomeStack.Screen>
             <AdminHomeStack.Screen name="Newsfeed" component={Newsfeed}></AdminHomeStack.Screen>
+            <AdminHomeStack.Screen name="Comments" component={Comments}></AdminHomeStack.Screen>
         </AdminHomeStack.Navigator>
     )
 }

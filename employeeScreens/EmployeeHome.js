@@ -47,13 +47,16 @@ export default function EmployeeHome({navigation}) {
                     </View>
                 </View>
                 <View style={employeeHomeStyles.individualContainer}>
+                <TouchableOpacity onPress={()=>navigation.navigate('EmployeeReportList')}>
                     <View style={employeeHomeStyles.individualBox}>
                         <View style={employeeHomeStyles.iconTitle}>
                             <FontAwesome name="files-o" size={24} color="black" style={{marginTop:15}}/>
                         </View>
                         <Text style={{fontSize:10,marginTop:10}}>Reports</Text>
                     </View>
-                </View>
+                    </TouchableOpacity>
+                </View> 
+                
             </View>
             <View style={employeeHomeStyles.bottomContainer}>
                 

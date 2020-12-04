@@ -8,6 +8,7 @@ import MyTasks from './employeeScreens/MyTasks'
 import EmployeeTaskDetail from './employeeScreens/EmployeeTaskDetail'
 import TaskHistory from './employeeScreens/TaskHistory'
 import EmployeeReportForm from './employeeScreens/EmployeeReportForm'
+import EmployeeReportList from './employeeScreens/EmployeeReportList'
 
 const EmployeeHomeStack = createStackNavigator()
 
@@ -22,6 +23,7 @@ export default function()
             <EmployeeHomeStack.Screen name='EmployeeTaskDetail' component={EmployeeTaskDetail}></EmployeeHomeStack.Screen>
             <EmployeeHomeStack.Screen name='TaskHistory' component={TaskHistory}></EmployeeHomeStack.Screen>
             <EmployeeHomeStack.Screen name='EmployeeReportForm' component={EmployeeReportForm}></EmployeeHomeStack.Screen>
+            <EmployeeHomeStack.Screen name='EmployeeReportList' component={EmployeeReportList}></EmployeeHomeStack.Screen>
         </EmployeeHomeStack.Navigator>
     )
 }

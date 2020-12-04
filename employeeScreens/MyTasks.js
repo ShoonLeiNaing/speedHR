@@ -20,7 +20,7 @@ export default function MyTasks({navigation}) {
                     <Text style={styles.title}>Welcome</Text>
                     <View style={employeeHomeStyles.datebox}>
                         <Text style={styles.date}>11/2/2020</Text>
-                    </View>
+                     </View>
                 </View>
                 <View style={styles.ImageBox}>
                   <Image  source={require('../assets/pic3.png')} style={styles.Image}/>
