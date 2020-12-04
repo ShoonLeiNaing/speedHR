@@ -3,11 +3,12 @@ import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'r
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
 import {notiStyles} from '../styles'
+import {employeeHomeStyles} from '../employeeStyles'
 import { Entypo } from '@expo/vector-icons'; 
 
 
 
-export default function Notifications({navigation}) {
+export default function EmployeeNotifications({navigation}) {
     const[noti,setNoti]=useState([
         {id:'1',notiText: "You have assigned a Task  Eat the breakfast "},
         {id:'2',notiText: "Kyaw Kyaw has assigned his report on Task “ Eat the breakfast “"},
@@ -16,11 +17,11 @@ export default function Notifications({navigation}) {
     ])
     
     return (
-        <View style={styles.container}>
+        <View style={employeeHomeStyles.container}>
             <View style={styles.headerBox}>
                 <View style={styles.headerBoxText}>
                     <Text style={styles.title}>Employees</Text>
-                    <View style={styles.datebox}>
+                    <View style={employeeHomeStyles.datebox}>
                         <Text style={styles.date}>11/2/2020</Text>
                     </View>
                 </View>

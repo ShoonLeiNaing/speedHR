@@ -1,11 +1,11 @@
 import React from 'react'
 import {taskStyles} from '../styles'
-import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,TextInput,TouchableWithoutFeedback} from 'react-native';
+import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,TextInput,TouchableWithoutFeedback,Keyboard} from 'react-native';
 
 export default function TaskForm() {
     return (
         <View style={taskStyles.form}>
-            <TouchableWithoutFeedback>
+              
             <View style={styles.individualContainer}>
                 <View style={styles.LabelContainer}>
                     <Text style={{fontSize:15}}>Time </Text>
@@ -14,7 +14,6 @@ export default function TaskForm() {
                    <TextInput style={{borderColor:'#9EC2BA',borderWidth:1,width:'80%',padding:7}}/>
                 </View>
             </View>
-            </TouchableWithoutFeedback>
             
             <View style={styles.individualContainer}>
                 <View style={styles.LabelContainer}>
@@ -48,7 +47,7 @@ export default function TaskForm() {
                     <TextInput style={{borderColor:'#9EC2BA',borderWidth:1,width:'80%',padding:7}}/>
                 </View>
             </View>
-            <TouchableWithoutFeedback>
+           
             <View style={styles.individualContainer}>     
                 <View style={styles.LabelContainer}>
                     <Text style={{fontSize:15}}>Additional Information </Text>
@@ -57,7 +56,7 @@ export default function TaskForm() {
                     <TextInput multiline  style={{borderColor:'#9EC2BA',borderWidth:1,width:'80%',padding:7}}/>
                 </View>
             </View>
-            </TouchableWithoutFeedback>
+            
            
         </View>
     )

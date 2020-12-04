@@ -81,7 +81,7 @@ export default function ReportDetail({route,navigation}) {
     )
 }
 
-const reportDetailStyles = StyleSheet.create({
+export const reportDetailStyles = StyleSheet.create({
     reportContainer:{
         backgroundColor:'white',
         flex:1,

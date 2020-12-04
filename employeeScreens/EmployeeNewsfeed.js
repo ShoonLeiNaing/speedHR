@@ -3,12 +3,12 @@ import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,Touchabl
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
 import {taskStyles} from '../styles'
+import {employeeHomeStyles} from '../employeeStyles'
 import { Feather } from '@expo/vector-icons'; 
-import TaskForm from './TaskForm';
+import TaskForm from '../screens/TaskForm'
 import { Button } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 
-
 import { TextInput } from 'react-native-gesture-handler';
 
 export default function Newsfeed() {
@@ -56,9 +56,9 @@ export default function Newsfeed() {
     ])
     return (
         
-        <View style={styles.container}>
+        <View style={employeeHomeStyles.container}>
             <Modal animationType="slide" visible={modalVisible} onRequestClose={() => { Alert.alert("Modal has been closed.")}} >  
-            <View style={postStyles.modalView}>
+            <View style={employeeHomeStyles.modalView}>
                 <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
                     <View style={postStyles.postForm}>
                         <View style={postStyles.header}>
@@ -76,7 +76,7 @@ export default function Newsfeed() {
                             <TextInput style={{fontSize:15}}  placeholder="Write Post" />
                         </View>
                         <View style={postStyles.postTextButton}>
-                            <Button  title="Add Post" titleStyle={{fontSize:15,color:'black'}} buttonStyle={taskStyles.AddTaskButton}/>
+                            <Button  title="Add Post" titleStyle={{fontSize:15,color:'black'}} buttonStyle={employeeHomeStyles.addTaskButton}/>
                         </View> 
                     </View> 
                 </TouchableWithoutFeedback>           
@@ -108,7 +108,7 @@ export default function Newsfeed() {
                             <Text style={{fontSize:15}}>{item.text}</Text>
                         </View>
                         <View style={postStyles.buttonContainer}>
-                            <Button  title="Comment" titleStyle={{fontSize:15,color:'black'}} buttonStyle={taskStyles.AddTaskButton}/>
+                            <Button  title="Comment" titleStyle={{fontSize:15,color:'black'}} buttonStyle={employeeHomeStyles.addTaskButton}/>
                         </View>
                     </View>
                 )} />           

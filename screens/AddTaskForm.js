@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,TouchableWithoutFeedback, Alert} from 'react-native';
+import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,TouchableWithoutFeedback, Alert, Keyboard} from 'react-native';
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
 import {taskStyles} from '../styles'
@@ -26,10 +26,10 @@ export default function EmployeeList({route,navigation}) {
         currentAssignTasks:'3'
     })
     return (
-        
+        <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>  
         <View style={styles.container}>
-   
             <View style={taskStyles.taskForm}>
+               
                 <View style={taskStyles.profileHeader}>
                     <View style={taskStyles.profileHeaderText}>
                         <Text style={{textAlign:'center'}}>Profile</Text>
@@ -60,13 +60,13 @@ export default function EmployeeList({route,navigation}) {
                 <View style={taskStyles.taskHeader}>
                     <Text style={{fontSize:20}}>Tasks</Text>
                 </View>
-                <TaskForm/>
+                    <TaskForm/>
                 <View style={taskStyles.addButton}>
                     <Button onPress={addTaskHandler} title="Add Task" titleStyle={{fontSize:15,color:'black'}} buttonStyle={taskStyles.AddTaskButton}/>
                 </View>
-            </View>
-            
-        </View>
+        </View>   
+    </View>
+    </TouchableWithoutFeedback>
  
     )
 }
