@@ -47,7 +47,7 @@ export default function SayargyiHome({navigation}){
                         <FontAwesome name="files-o" size={24} color="black" style={styles.Icon}/>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.navigate('UpcomingAppointment')}>
                     <View style={styles.smallContainer}>
                         <Text style={styles.smallContainerText}>Appointment</Text>
                         <AntDesign name="clockcircleo" size={24} color="black" style={styles.Icon}/>

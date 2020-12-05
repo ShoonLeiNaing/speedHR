@@ -12,6 +12,10 @@ import ReportList from './screens/ReportList'
 import ReportDetail from './screens/ReportDetail'
 import Newsfeed from './screens/Newsfeed'
 import Comments from './screens/Comments'
+import UpcomingAppointment from './screens/UpcomingAppointment'
+import PreviousAppointment from './screens/PreviousAppoinment'
+import AddAppointment from './screens/AddAppointment'
+import AppointmentDetails from './screens/AppointmentDetails'
 
 
 const AdminHomeStack = createStackNavigator()
@@ -31,6 +35,11 @@ export default function()
             <AdminHomeStack.Screen name="ReportDetail" component={ReportDetail}></AdminHomeStack.Screen>
             <AdminHomeStack.Screen name="Newsfeed" component={Newsfeed}></AdminHomeStack.Screen>
             <AdminHomeStack.Screen name="Comments" component={Comments}></AdminHomeStack.Screen>
+            <AdminHomeStack.Screen name="UpcomingAppointment" component={UpcomingAppointment}></AdminHomeStack.Screen>
+            <AdminHomeStack.Screen name="PreviousAppointment" component={PreviousAppointment}></AdminHomeStack.Screen>
+            <AdminHomeStack.Screen name="AddAppointment" component={AddAppointment}></AdminHomeStack.Screen>
+            <AdminHomeStack.Screen name="AppointmentDetails" component={AppointmentDetails}></AdminHomeStack.Screen>
+
         </AdminHomeStack.Navigator>
     )
 }
