@@ -22,7 +22,7 @@ export default function Profile({route,navigation}) {
                 <Text style={profileStyles.workerType} >{employee.workerType}</Text>
                 <View style={profileStyles.bottomContainer}>
                     <View style={profileStyles.bottomSmallContainer}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>navigation.navigate('Location')}>
                         <View style={profileStyles.TextContainer}>
                             <Entypo name="location" size={24} color="black" style={{flex:1,justifyContent:"flex-start",marginLeft:20}} />
                             <Text style={profileStyles.Text}>Current Location</Text>
@@ -39,7 +39,7 @@ export default function Profile({route,navigation}) {
                         </TouchableOpacity>
                         
                     </View>
-                    <View style={profileStyles.bottomLastSmallContainer}>
+                    <View style={profileStyles.bottomSmallContainer}>
                         <TouchableOpacity>
                             <View style={profileStyles.TextContainer}>
                                 <MaterialCommunityIcons name="page-next-outline" size={24} color="black" style={{flex:1,justifyContent:"flex-start",marginLeft:20}} />
@@ -49,6 +49,7 @@ export default function Profile({route,navigation}) {
                        
                     </View>
                 </View>
+                
             </View>
        </View>
     )

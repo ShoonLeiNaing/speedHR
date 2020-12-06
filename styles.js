@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
     },
     date:{
         marginHorizontal:10,
-        fontSize:15,
+        fontSize:12,
     },
     smallContainer:{
         flexDirection:'row',

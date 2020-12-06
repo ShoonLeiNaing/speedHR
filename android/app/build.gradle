@@ -184,6 +184,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-maps')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.3.41"
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
