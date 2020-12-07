@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,TouchableWithoutFeedback, Alert,Modal,TouchableHighlight, Keyboard} from 'react-native';
+import * as React from 'react'
+import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,TouchableWithoutFeedback, Alert,Modal,TouchableHighlight, Keyboard, ActivityIndicator} from 'react-native';
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
 import {taskStyles} from '../styles'
@@ -10,10 +10,24 @@ import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons'; 
 
 import { TextInput } from 'react-native-gesture-handler';
+import { response } from 'express';
 
 export default function Newsfeed({navigation}) {
+    const workspaceId=1
+    const URL="https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/newsfeed/{workspaceId}"
     const [modalVisible, setModalVisible] = useState(false);
-   
+    const[isLoading,setLoading]=useState(true)
+    const[data,setData]=useState([])
+    // useEffect(()=>{
+    //     fetch(URL)
+    //     .then((response)=>response.json())
+    //     .then((json)=>{
+    //         setData(json);
+    //         alert(data);
+    //     })
+    //     .catch((error)=>alert(error))
+    //     .finally(setLoading(false));
+    // });
     const[post,setPost]=useState([
         {
             id:'1',
@@ -57,6 +71,7 @@ export default function Newsfeed({navigation}) {
     return (
         
         <View style={styles.container}>
+            
             <Modal animationType="slide" visible={modalVisible} onRequestClose={() => { Alert.alert("Modal has been closed.")}} >  
             <View style={postStyles.modalView}>
                 <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
@@ -82,7 +97,7 @@ export default function Newsfeed({navigation}) {
                 </TouchableWithoutFeedback>           
             </View>
       </Modal>
-
+      
             <TouchableOpacity onPress={()=>setModalVisible(true)}>
             <View style={postStyles.addPost}>   
                 <Ionicons name="ios-add-circle-outline" size={30} color="black" style={{marginBottom:10}} />
