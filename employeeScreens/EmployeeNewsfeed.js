@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,TouchableWithoutFeedback, Alert,Modal,TouchableHighlight, Keyboard} from 'react-native';
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
@@ -10,50 +10,40 @@ import { Button } from 'react-native-elements';
 import { Ionicons } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 
 import { TextInput } from 'react-native-gesture-handler';
+import axios from 'axios'
 
-export default function Newsfeed() {
+export default function EmployeeNewsfeed({navigation}) {
     const [modalVisible, setModalVisible] = useState(false);
+    const [postText,setPostText]=useState({})
+    const workspaceId=1
+    const URL="https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/newsfeed/1"
+    const[isLoading,setLoading]=useState(true)
+    const[data,setData]=useState([])
+    
+    useEffect(()=>{
+        axios.get(URL)
+        .then(function (response) {
+            setData(response.data) 
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    },[])
    
-    const[post,setPost]=useState([
-        {
-            id:'1',
-            text:'Lorem ipsum is placeholder text commonly used in the graphic print and publishing industries for previewing layouts and visual mockups.',
-            employee:'Kyaw Kyaw',
-            created_at:'12/12/2020 10:30 AM',
-        },
-        {
-            id:'2',
-            text:'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate',
-            employee:'Maung Maung',
-            created_at:'12/12/2020 9:30 AM',
-        },
-        {
-            id:'3',
-            text:'Lorem ipsum is placeholder text commonly used in the graphic print and publishing industries for previewing layouts and visual mockups.',
-            employee:'Su Su',
-            created_at:'12/12/2020 8:30 AM',
-        },
-        {
-            id:'4',
-            text:'Lorem ipsum is placeholder text commonly used in the graphic print and publishing industries for previewing layouts and visual mockups.',
-            employee:'Hla Hla',
-            created_at:'11/12/2020 10:30 PM',
-        },
-        {
-            id:'5',
-            text:'Lorem ipsum is placeholder text commonly used in the graphic print and publishing industries for previewing layouts and visual mockups.',
-            employee:'Kyaw Kyaw',
-            created_at:'11/12/2020 4:30 PM',
-        },
-        {
-            id:'6',
-            text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-            employee:'Kyaw Kyaw',
-            created_at:'12/12/2020 10:30 AM',
-        },
-
-
-    ])
+    const postSubmit=()=>{
+        axios.post(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/newsfeed/${workspaceId}`, {
+            workerId:'12',
+            data: postText
+          })
+          .then(function (response) {
+            console.log(response);
+            setModalVisible(false)
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+       }
+    
     return (
         
         <View style={employeeHomeStyles.container}>
@@ -73,10 +63,10 @@ export default function Newsfeed() {
                         
                         </View>    
                         <View style={postStyles.postTextInput}>
-                            <TextInput style={{fontSize:15}}  placeholder="Write Post" />
+                            <TextInput style={{fontSize:15}}  placeholder="Write Post" onChangeText={(postText)=>setPostText(postText)} />
                         </View>
                         <View style={postStyles.postTextButton}>
-                            <Button  title="Add Post" titleStyle={{fontSize:15,color:'black'}} buttonStyle={employeeHomeStyles.addTaskButton}/>
+                            <Button onPress={postSubmit} title="Add Post" titleStyle={{fontSize:15,color:'black'}} buttonStyle={employeeHomeStyles.addTaskButton}/>
                         </View> 
                     </View> 
                 </TouchableWithoutFeedback>           
@@ -91,24 +81,24 @@ export default function Newsfeed() {
             </TouchableOpacity>
             
             <View style={postStyles.postForm}>
-                <FlatList style={{flex:1}} data={post} keyExtractor={(item)=>item.id} renderItem={({item})=>(
+                <FlatList style={{flex:1}} data={data} keyExtractor={(item)=>item.postId} renderItem={({item})=>(
                     <View style={postStyles.postContainer}>
                         <View style={postStyles.postHeaderContainer}>
                             <View style={postStyles.employeeProfilePic}>
                                 <Image source={require('../assets/pic.jpg')} style={{height:40,width:40,alignSelf:'center'}} />
                             </View>
                             <View style={postStyles.employeeProfileName}>
-                                <Text style={{marginLeft:10}}>{item.employee}</Text>
+                                <Text style={{marginLeft:10}}>{item.workerId}</Text>
                             </View>
                             <View style={postStyles.postDate}>
-                                <Text style={{fontSize:10}}>{item.created_at}</Text>
+                                <Text style={{fontSize:10}}>{item.Postdate}</Text>
                             </View>
                         </View>
                         <View style={postStyles.textContainer}>
-                            <Text style={{fontSize:15}}>{item.text}</Text>
+                            <Text style={{fontSize:15}}>{item.data}</Text>
                         </View>
                         <View style={postStyles.buttonContainer}>
-                            <Button  title="Comment" titleStyle={{fontSize:15,color:'black'}} buttonStyle={employeeHomeStyles.addTaskButton}/>
+                            <Button onPress={()=>navigation.navigate('EmployeeComment',item)}  title="Comment" titleStyle={{fontSize:15,color:'black'}} buttonStyle={employeeHomeStyles.addTaskButton}/>
                         </View>
                     </View>
                 )} />           

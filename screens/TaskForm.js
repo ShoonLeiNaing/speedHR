@@ -6,53 +6,53 @@ export default function TaskForm() {
     return (
         <View style={taskStyles.form}>
               
-            <View style={styles.individualContainer}>
-                <View style={styles.LabelContainer}>
+            <View style={TaskFormstyles.individualContainer}>
+                <View style={TaskFormstyles.LabelContainer}>
                     <Text style={{fontSize:15}}>Time </Text>
                 </View>  
-                <View style={styles.InputContainer}>
+                <View style={TaskFormstyles.InputContainer}>
                    <TextInput style={{borderColor:'#9EC2BA',borderWidth:1,width:'80%',padding:7}}/>
                 </View>
             </View>
             
-            <View style={styles.individualContainer}>
-                <View style={styles.LabelContainer}>
+            <View style={TaskFormstyles.individualContainer}>
+                <View style={TaskFormstyles.LabelContainer}>
                     <Text style={{fontSize:15}}>Location </Text>
                 </View>
-                <View style={styles.InputContainer}>
+                <View style={TaskFormstyles.InputContainer}>
                     <TextInput style={{borderColor:'#9EC2BA',borderWidth:1,width:'80%',padding:7}}/>
                 </View>
             </View>
-            <View style={styles.individualContainer}>
-                <View style={styles.LabelContainer}>
+            <View style={TaskFormstyles.individualContainer}>
+                <View style={TaskFormstyles.LabelContainer}>
                     <Text style={{fontSize:15}}>Customer </Text>
                 </View>
-                <View style={styles.InputContainer}>
+                <View style={TaskFormstyles.InputContainer}>
                     <TextInput style={{borderColor:'#9EC2BA',borderWidth:1,width:'80%',padding:7}}/>
                 </View>
             </View>
-            <View style={styles.individualContainer}>
-                <View style={styles.LabelContainer}>
+            <View style={TaskFormstyles.individualContainer}>
+                <View style={TaskFormstyles.LabelContainer}>
                     <Text style={{fontSize:15}}>Topic </Text>
                 </View>
-                <View style={styles.InputContainer}>
+                <View style={TaskFormstyles.InputContainer}>
                     <TextInput style={{borderColor:'#9EC2BA',borderWidth:1,width:'80%',padding:7}}/>
                 </View>
             </View>
-            <View style={styles.individualContainer}>
-                <View style={styles.LabelContainer}>
+            <View style={TaskFormstyles.individualContainer}>
+                <View style={TaskFormstyles.LabelContainer}>
                     <Text style={{fontSize:15}}>Product </Text>
                 </View>
-                <View style={styles.InputContainer}>
+                <View style={TaskFormstyles.InputContainer}>
                     <TextInput style={{borderColor:'#9EC2BA',borderWidth:1,width:'80%',padding:7}}/>
                 </View>
             </View>
            
-            <View style={styles.individualContainer}>     
-                <View style={styles.LabelContainer}>
+            <View style={TaskFormstyles.individualContainer}>     
+                <View style={TaskFormstyles.LabelContainer}>
                     <Text style={{fontSize:15}}>Additional Information </Text>
                 </View>
-                <View style={styles.InputContainer}>
+                <View style={TaskFormstyles.InputContainer}>
                     <TextInput multiline  style={{borderColor:'#9EC2BA',borderWidth:1,width:'80%',padding:7}}/>
                 </View>
             </View>
@@ -61,7 +61,7 @@ export default function TaskForm() {
         </View>
     )
 }
-const styles =StyleSheet.create({
+const TaskFormstyles =StyleSheet.create({
     individualContainer:{
         flexDirection:'row',
         flex:1,

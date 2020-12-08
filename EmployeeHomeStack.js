@@ -9,6 +9,8 @@ import EmployeeTaskDetail from './employeeScreens/EmployeeTaskDetail'
 import TaskHistory from './employeeScreens/TaskHistory'
 import EmployeeReportForm from './employeeScreens/EmployeeReportForm'
 import EmployeeReportList from './employeeScreens/EmployeeReportList'
+import EmployeeComment from './employeeScreens/EmployeeComment'
+
 
 const EmployeeHomeStack = createStackNavigator()
 
@@ -19,11 +21,15 @@ export default function()
             <EmployeeHomeStack.Screen name="EmployeeHome" component={EmployeeHome}></EmployeeHomeStack.Screen>
             <EmployeeHomeStack.Screen name="EmployeeNotifications" component={EmployeeNotifications}></EmployeeHomeStack.Screen>
             <EmployeeHomeStack.Screen name='EmployeeNewsfeed' component={EmployeeNewsfeed}></EmployeeHomeStack.Screen>
+            <EmployeeHomeStack.Screen name="EmployeeComment" component={EmployeeComment}></EmployeeHomeStack.Screen>
             <EmployeeHomeStack.Screen name='MyTasks' component={MyTasks}></EmployeeHomeStack.Screen>
             <EmployeeHomeStack.Screen name='EmployeeTaskDetail' component={EmployeeTaskDetail}></EmployeeHomeStack.Screen>
             <EmployeeHomeStack.Screen name='TaskHistory' component={TaskHistory}></EmployeeHomeStack.Screen>
             <EmployeeHomeStack.Screen name='EmployeeReportForm' component={EmployeeReportForm}></EmployeeHomeStack.Screen>
             <EmployeeHomeStack.Screen name='EmployeeReportList' component={EmployeeReportList}></EmployeeHomeStack.Screen>
+            {/* <EmployeeHomeStack.Screen name='EmployeeAppointment' component={EmployeeAppointment}></EmployeeHomeStack.Screen>
+            <EmployeeHomeStack.Screen name='EmployeePrevious' component={EmployeePrevious}></EmployeeHomeStack.Screen>
+            <EmployeeHomeStack.Screen name='AppointmentDetail' component={AppointmentDetail}></EmployeeHomeStack.Screen> */}
         </EmployeeHomeStack.Navigator>
     )
 }

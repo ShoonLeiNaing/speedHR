@@ -20,7 +20,7 @@ export default function EmployeeNotifications({navigation}) {
         <View style={employeeHomeStyles.container}>
             <View style={styles.headerBox}>
                 <View style={styles.headerBoxText}>
-                    <Text style={styles.title}>Employees</Text>
+                    <Text style={styles.title}>Notifications</Text>
                     <View style={employeeHomeStyles.datebox}>
                         <Text style={styles.date}>11/2/2020</Text>
                     </View>

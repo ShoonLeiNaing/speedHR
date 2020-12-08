@@ -3,14 +3,14 @@ import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'r
 import { TextInput } from 'react-native-gesture-handler';
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
-import {postStyles} from './Newsfeed'
-import { Feather } from '@expo/vector-icons'; 
-import axios from 'axios'
+import {postStyles} from '../screens/Newsfeed'
+import { Feather } from '@expo/vector-icons';
+import axios from 'axios' 
 
 
 export default function Comments({route,navigation}) {
-    const postId=route.params.id
-    const commentId="19111607331739821"
+    const commentId=route.params.id
+    // const commentId="19111607331739821"
     
     const URL="https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/comment/19111607331739821"
     const[data,setData]=useState([])
@@ -19,13 +19,11 @@ export default function Comments({route,navigation}) {
         axios.get(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/comment/${commentId}`)
         .then(function (response) {
             setData(response.data)
-            navigation.navigate('SayargyiHome')
         })
         .catch(function (error) {
             alert(error);
         });
     },[])
-
     const[comment,setComment]=useState([
         {id:'1', employee:'Kyaw Kyaw',text:'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
         {id:'2', employee:'Maung Maung',text:'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
@@ -36,15 +34,15 @@ export default function Comments({route,navigation}) {
     return (
         <View style={styles.container}>
             <View style={commentStyles.postForm}>
-                <FlatList  data={data} keyExtractor={(item)=>item.commentId}  renderItem={({item})=>(
+                <FlatList  data={data} keyExtractor={(item)=>item.commentId} renderItem={({item})=>(
                     <View style={commentStyles.commentContainer}>
                         <View style={commentStyles.profilePic}>
                             <Image  source={require('../assets/pic.jpg')} style={{height:40,width:40,borderRadius:200}} />
                         </View>
                         <View style={commentStyles.textContainer}>
                             <View >
-                                <Text style={{marginBottom:10,fontWeight:'bold'}}>{item.workerId}</Text>
-                                <Text>{item.data}</Text>
+                                <Text style={{marginBottom:10,fontWeight:'bold'}}>{item.employee}</Text>
+                                <Text>{item.text}</Text>
                             </View>
 
                         </View>

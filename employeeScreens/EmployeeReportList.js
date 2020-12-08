@@ -25,7 +25,7 @@ export default function EmployeeReportList({navigation}) {
            
             <View style={styles.headerBox}>
                 <View style={styles.headerBoxText}>
-                    <Text style={styles.title}>Welcome</Text>
+                    <Text style={styles.title}>Reports List</Text>
                     <View style={employeeHomeStyles.datebox}>
                         <Text style={styles.date}>11/2/2020</Text>
                     </View>

@@ -1,11 +1,29 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'react-native';
 import {employeeHomeStyles} from '../employeeStyles'
 import {styles} from '../styles'
 import { Ionicons } from '@expo/vector-icons'; 
+import axios from 'axios'
 
-
+//https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/getHistory/{workerId}
 export default function TaskHistory({navigation}) {
+
+    
+    const workerId=911
+    const URL=`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/getHistory/${workerId}`
+    const[isLoading,setLoading]=useState(true)
+    const[data,setData]=useState([])
+    
+    useEffect(()=>{
+        axios.get(URL)
+        .then(function (response) {
+            setData(response.data) 
+            alert(data)
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    },[])
     const[task,setTask]=useState([
         {id:'4D7782' ,name:'Video Editing for project A', deadline:'8:30AM',location:'office'},
         {id:'4D9782' ,name:'Video Editing for project B', deadline:'8:30AM',location:'office'},
@@ -16,7 +34,7 @@ export default function TaskHistory({navigation}) {
            
             <View style={styles.headerBox}>
                 <View style={styles.headerBoxText}>
-                    <Text style={styles.title}>Welcome</Text>
+                    <Text style={styles.title}>Tasks History</Text>
                     <View style={employeeHomeStyles.datebox}>
                         <Text style={styles.date}>11/2/2020</Text>
                     </View>

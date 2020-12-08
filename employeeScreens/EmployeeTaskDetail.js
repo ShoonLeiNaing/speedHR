@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'react-native';
 import {employeeHomeStyles} from '../employeeStyles'
 import {styles} from '../styles'
@@ -6,9 +6,27 @@ import { Entypo } from '@expo/vector-icons';
 import {reportDetailStyles} from '../screens/ReportDetail'
 import { Button } from 'react-native-elements';
 import {taskStyles} from '../styles'
+import axios from 'axios'
 
 
 export default function EmployeeTaskDetail({route,navigation}) {
+    const taskId = route.params.taskId;
+    const workerId=911
+    const URL=`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/task/taskDetail/${taskId}`
+    const[isLoading,setLoading]=useState(true)
+    const[data,setData]=useState([])
+    
+    useEffect(()=>{
+        axios.get(URL)
+        .then(function (response) {
+            setData(response.data) 
+            alert(data)
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    },[])
+
     const[task,setTask]=useState({
        id:route.params.id,
        name:route.params.name,

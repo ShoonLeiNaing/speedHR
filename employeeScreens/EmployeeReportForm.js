@@ -6,22 +6,40 @@ import { Entypo } from '@expo/vector-icons';
 import {reportDetailStyles} from '../screens/ReportDetail'
 import { Button } from 'react-native-elements';
 import {taskStyles} from '../styles'
+import axios from 'axios'
 
 
 
 export default function EmployeeTaskDetail({route,navigation}) {
+    const[reportText,setReportText]=useState("")
+    const[data,setData]=useState([])
     const[task,setTask]=useState({
        id:route.params.id,
        name:route.params.name,
        location:route.params.location,
        deadline:route.params.deadline
     })
+
+    const pressHandler=()=>{
+        axios.post('https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/submitReport', {
+            taskId:"13624629419604",
+            reportData:reportText
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        alert(reportText)
+        navigation.navigate('EmployeeHome')
+       }
     return (
         <View style={employeeHomeStyles.container}>
            
             <View style={styles.headerBox}>
                 <View style={styles.headerBoxText}>
-                    <Text style={styles.title}>Welcome</Text>
+                    <Text style={styles.title}>Reports Form</Text>
                     <View style={employeeHomeStyles.datebox}>
                         <Text style={styles.date}>11/2/2020</Text>
                     </View>
@@ -39,20 +57,17 @@ export default function EmployeeTaskDetail({route,navigation}) {
                 <View style={reportFormStyle.inputContainer}>
                     <Text style={{fontSize:18,textAlign:'left',margin:20}}>Write in brief</Text>
                     <View style={reportFormStyle.textInputStyle}>
-                        <TextInput  style={{padding:10}}/>
+                        <TextInput  style={{padding:10}} onChangeText={(reportText)=>setReportText(reportText)}/>
                     </View>  
                 </View>
                 <View style={reportFormStyle.attachmentContainer}>
                     <Text style={{fontSize:18,textAlign:'left',marginTop:40,margin:20}}>Attachments</Text>
                     <Entypo style={{textAlign:'left',marginTop:40,marginHorizontal:50}} name="attachment" size={20} color="black" />
                 </View>
-                    
-                    
-                
-                <View style={reportDetailStyles.buttonContainer}>
-                    
+                        
+                <View style={reportDetailStyles.buttonContainer}>   
                     <View>
-                        <Button onPress={()=>navigation.navigate('EmployeeHome')} title="Submit" titleStyle={{fontSize:15,color:'black'}} buttonStyle={reportFormStyle.addTaskButton}/>
+                        <Button onPress={pressHandler} title="Submit" titleStyle={{fontSize:15,color:'black'}} buttonStyle={reportFormStyle.addTaskButton}/>
                     </View>
                 </View>
                </View>
