@@ -1,10 +1,12 @@
 import React,{useState} from 'react'
-import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,TouchableWithoutFeedback, Alert, Keyboard,TextInput} from 'react-native';
+import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,TouchableWithoutFeedback, Alert, Keyboard,TextInput,KeyboardAvoidingView} from 'react-native';
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
 import {taskStyles} from '../styles'
 import { Feather } from '@expo/vector-icons'; 
 import { Button } from 'react-native-elements';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import axios from 'axios'
 
 export default function EmployeeList({route,navigation}) {
     const workerId='911'
@@ -24,11 +26,10 @@ export default function EmployeeList({route,navigation}) {
                 { text:'Yes', onPress:()=>{
                     console.log('Task added'),
                     navigation.navigate('AddTasks')
-                    axios.post(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/newsfeed/${workspaceId}`, {
+                    axios.post("https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/addTask", {
                         workerId: workerId,
                         time: time,
                         location: location,
-                        customer:customer,
                         topic: topic,
                         workspaceId: workspaceId,
                         info: info
@@ -56,8 +57,11 @@ export default function EmployeeList({route,navigation}) {
         currentAssignTasks:'3'
     })
     return (
-        <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>  
+        <KeyboardAvoidingView style={{flex:1}} behavior='height'>
+        <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
+         
         <View style={styles.container}>
+       
             <View style={taskStyles.taskForm}>
                
                 <View style={taskStyles.profileHeader}>
@@ -87,9 +91,9 @@ export default function EmployeeList({route,navigation}) {
                     </View>
                 </View>
 
-               
-                <View style={taskStyles.form}>
-              
+            
+            <View style={taskStyles.form}>
+           
               <View style={TaskFormstyles.individualContainer}>
                   <View style={TaskFormstyles.LabelContainer}>
                       <Text style={{fontSize:15}}>Time </Text>
@@ -141,15 +145,19 @@ export default function EmployeeList({route,navigation}) {
                   </View>
               </View>
               
-             
           </View>
                 <View style={taskStyles.addButton}>
                     <Button onPress={addTaskHandler} title="Add Task" titleStyle={{fontSize:15,color:'black'}} buttonStyle={taskStyles.AddTaskButton}/>
                 </View>
+            
         </View>   
+        
     </View>
+    
     </TouchableWithoutFeedback>
- 
+    
+    </KeyboardAvoidingView>
+
     )
 }
 

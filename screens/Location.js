@@ -17,11 +17,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 
 export default function Location  () {
-    // const[coordinates,setCoordinates]=useState([
-    //     { name:'Kyaw Kyaw',latitude: 16.7923918304,longitude: 96.1430110946,},
-    //     { name:'Su Su',latitude: 16.821996712 ,longitude: 96.150166066,},
-    //     { name:'Maung Maung',latitude:16.8246550347,longitude:96.1346011283,},
-    // ])
+    
     const [location,setLocation]=useState({})
     const[x,setX]=useState({})
     const[lat,setLat]=useState()
@@ -43,8 +39,6 @@ export default function Location  () {
         setX(JSON.parse(location));
         setLat(x.coords.latitude)
         setLong(x.coords.longitude)
-
-        
 	};
  
     return (

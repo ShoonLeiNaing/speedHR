@@ -10,6 +10,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons'; 
 import { TextInput } from 'react-native-gesture-handler';
 import axios from 'axios'
+import NetInfo,{useNetInfo} from "@react-native-community/netinfo";
+import { AsyncStorage } from 'react-native';
 
 
 export default function Newsfeed({navigation}) {
@@ -20,29 +22,84 @@ export default function Newsfeed({navigation}) {
     const [modalVisible, setModalVisible] = useState(false);
     const[isLoading,setLoading]=useState(true)
     const[data,setData]=useState([])
+    const[asyncstorage,setAsyncstorage]=useState([])
+    const[connection,setConnection]=useState()
+
+    const saveData=async()=>{
+        AsyncStorage.setItem('data',postText)
+      }
+
+      const displayData=async()=>{
+        try{
+          let obj = await AsyncStorage.getItem('data');
+          if(obj!=null){
+            console.log(obj)
+            axios.post(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/newsfeed/${workspaceId}`, {
+                workerId:'12',
+                data: obj
+            })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            AsyncStorage.clear()
+
+          }
+          
+          
+        }
+        catch(error){
+          alert(error)
+        }
+      }
+
+    // useEffect(()=>{
+    //     NetInfo.fetch().then(state => {      
+    //         setConnection(state.isConnected)       
+    //     });
+    //     displayData()
+    // },[])
     
     useEffect(()=>{
         axios.get(URL)
         .then(function (response) {
             setData(response.data) 
-            
         })
         .catch(function (error) {
-            alert(error);
+           console.log(error);
         });
     },[])
   
    const postSubmit=()=>{
-    axios.post(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/newsfeed/${workspaceId}`, {
-        workerId:'12',
-        data: postText
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    NetInfo.fetch("wifi").then(state => {      
+        setConnection(state.isConnected)       
+    });
+
+    if(connection){
+        axios.post(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/newsfeed/${workspaceId}`, {
+            workerId:'12',
+            data: postText
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+          setModalVisible(false)
+    }else{
+        
+        saveData()
+        // setAsyncstorage({workerId:'12',data:postText})
+        // console.log(asyncstorage)
+    }
+
+    
+    
+
+    
    }
     return (
         

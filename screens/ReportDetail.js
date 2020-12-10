@@ -8,10 +8,13 @@ import {taskStyles} from '../styles'
 
 export default function ReportDetail({route,navigation}) {
     const[report,setReport]=useState({
-        id:route.params.id,
+        taskId:route.params.taskId,
         reportName:route.params.reportName,
-        employee:route.params.employee
+        reportText:route.params.reportText
     })
+
+    
+
     return (
         <View style={styles.container}>
             <View style={styles.headerBox}>

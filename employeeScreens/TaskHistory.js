@@ -5,7 +5,8 @@ import {styles} from '../styles'
 import { Ionicons } from '@expo/vector-icons'; 
 import axios from 'axios'
 
-//https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/getHistory/{workerId}
+
+
 export default function TaskHistory({navigation}) {
 
     
@@ -18,17 +19,13 @@ export default function TaskHistory({navigation}) {
         axios.get(URL)
         .then(function (response) {
             setData(response.data) 
-            alert(data)
+            
         })
         .catch(function (error) {
             alert(error);
         });
     },[])
-    const[task,setTask]=useState([
-        {id:'4D7782' ,name:'Video Editing for project A', deadline:'8:30AM',location:'office'},
-        {id:'4D9782' ,name:'Video Editing for project B', deadline:'8:30AM',location:'office'},
-        
-    ])
+    
     return (
         <View style={employeeHomeStyles.container}>
            
@@ -43,14 +40,14 @@ export default function TaskHistory({navigation}) {
                   <Image  source={require('../assets/pic3.png')} style={styles.Image}/>
                 </View>
             </View>
-            <FlatList data={task} style={{marginVertical:30,flex:1,marginHorizontal:10}} renderItem={({item})=>(
+            <FlatList data={data} keyExtractor={(item)=>item.taskId} style={{marginVertical:30,flex:1,marginHorizontal:10}} renderItem={({item})=>(
                 <View style={employeeTaskStyles.taskContainer}>
                     <View style={employeeTaskStyles.individualRow}>
                         <View style={employeeTaskStyles.titleContainer}>
                             <Text>Task ID </Text>
                         </View>
                         <View style={employeeTaskStyles.titleContainer}>
-                            <Text>:  {item.id}</Text>
+                            <Text>:  {item.taskId}</Text>
                         </View>
                         <View style={employeeTaskStyles.buttonContainer}>
                             <Ionicons name="ios-cloud-done" size={24} color='#235347' style={{marginTop:-20}} />
@@ -61,7 +58,7 @@ export default function TaskHistory({navigation}) {
                             <Text>Task Title </Text>
                         </View>
                         <View style={employeeTaskStyles.textContainer}>
-                            <Text>:  {item.name}</Text>
+                            <Text>:  {item.topic}</Text>
                         </View>
                     </View>
                     <View style={employeeTaskStyles.individualRow}>
@@ -69,7 +66,7 @@ export default function TaskHistory({navigation}) {
                             <Text>Deadline</Text>
                         </View>
                         <View style={employeeTaskStyles.textContainer}>
-                            <Text>:  {item.deadline}</Text>
+                            <Text>:  {item.time}</Text>
                         </View>
                         
                     </View>

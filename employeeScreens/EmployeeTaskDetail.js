@@ -10,7 +10,9 @@ import axios from 'axios'
 
 
 export default function EmployeeTaskDetail({route,navigation}) {
+
     const taskId = route.params.taskId;
+
     const workerId=911
     const URL=`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/task/taskDetail/${taskId}`
     const[isLoading,setLoading]=useState(true)
@@ -20,7 +22,7 @@ export default function EmployeeTaskDetail({route,navigation}) {
         axios.get(URL)
         .then(function (response) {
             setData(response.data) 
-            alert(data)
+            // alert(data.taskId)
         })
         .catch(function (error) {
             alert(error);
@@ -28,10 +30,13 @@ export default function EmployeeTaskDetail({route,navigation}) {
     },[])
 
     const[task,setTask]=useState({
-       id:route.params.id,
-       name:route.params.name,
+       taskId:route.params.taskId,
+       info:route.params.info,
        location:route.params.location,
-       deadline:route.params.deadline
+       topic:route.params.topic,
+       customer:route.params.customer,
+       product:route.params.topic,
+       deadline:route.params.time
     })
     return (
         <View style={employeeHomeStyles.container}>
@@ -50,7 +55,7 @@ export default function EmployeeTaskDetail({route,navigation}) {
             
             <View style={reportDetailStyles.reportContainer}>
                 <View style={reportDetailStyles.reportTitleContainer}>
-                    <Text style={{fontSize:18}}>{task.name}</Text>
+                    <Text style={{fontSize:18}}>{task.topic}</Text>
                 </View>
 
                 <View style={reportDetailStyles.reportTitleContainer}>
@@ -58,7 +63,7 @@ export default function EmployeeTaskDetail({route,navigation}) {
                         <Text style={{fontSize:15}}>Task ID :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:17,}}>{task.id}</Text>
+                        <Text style={{fontSize:17,}}>{task.taskId}</Text>
                     </View>
                 </View>
                 <View style={reportDetailStyles.reportTitleContainer}>
@@ -74,7 +79,7 @@ export default function EmployeeTaskDetail({route,navigation}) {
                         <Text style={{fontSize:15}}>Customer :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:17}}>Kyaw Kyaw</Text>
+                        <Text style={{fontSize:17}}>{task.customer}</Text>
                     </View>
                 </View>
 
@@ -83,7 +88,7 @@ export default function EmployeeTaskDetail({route,navigation}) {
                         <Text style={{fontSize:15}}>Product :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:17,}}>Fertilizer</Text>
+                        <Text style={{fontSize:17,}}>{task.product}</Text>
                     </View>
                 </View>
                 <View style={reportDetailStyles.attachmentContainer}>
@@ -91,7 +96,7 @@ export default function EmployeeTaskDetail({route,navigation}) {
                         <Text style={{fontSize:15}}>Topic :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:17,}}>To sell fertilizer</Text>
+                        <Text style={{fontSize:17,}}>{task.topic}</Text>
                     </View>
                 </View>
                 <View style={reportDetailStyles.reportDescriptionContainer}>
@@ -99,8 +104,7 @@ export default function EmployeeTaskDetail({route,navigation}) {
                         <Text style={{fontSize:15}}>Additional Information :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>   
-                        <Text style={{fontSize:15,margin:5}}>Lorem Ipsum is simply dummy 
-                        text of the printing and typesetting industry.</Text>
+                        <Text style={{fontSize:15,margin:5}}>{task.info}</Text>
                     </View>
                 </View>
                 

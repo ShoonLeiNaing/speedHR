@@ -1,12 +1,49 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'react-native';
 import {styles} from '../styles'
 import { FontAwesome } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import NetInfo,{useNetInfo} from "@react-native-community/netinfo";
+import { AsyncStorage } from 'react-native';
+import axios from 'axios'
 
 export default function SayargyiHome({navigation}){
+    const workspaceId='1'
+    const[connection,setConnection]=useState()
+    useEffect(()=>{
+        displayData()
+    },[])
+    const displayData=async()=>{
+        try{
+          let obj = await AsyncStorage.getItem('data');
+          console.log(obj)  
+          
+          NetInfo.fetch().then(state => {      
+            setConnection(state.isConnected)       
+          });
+          
+          if(connection && obj!=null){
+            alert(obj)
+            axios.post(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/newsfeed/${workspaceId}`, {
+                workerId:'12',
+                data: obj
+              })
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+              AsyncStorage.clear()
+          }
+        }
+        catch(error){
+          alert(error)
+        }
+      }
+    
     return (
         <View style={styles.container}>
             <View style={styles.headerBox}>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'react-native';
 import {employeeHomeStyles} from '../employeeStyles'
 import {styles} from '../styles'
@@ -7,8 +7,34 @@ import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { FontAwesome5 } from '@expo/vector-icons'; 
+import { Marker,Callout,Polygon, Circle } from 'react-native-maps'
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 export default function EmployeeHome({navigation}) {
+    const [location,setLocation]=useState({})
+    const[x,setX]=useState({})
+    const[lat,setLat]=useState()
+    const[long,setLong]=useState()
+
+    const findCoordinates = () => {
+		navigator.geolocation.getCurrentPosition(
+			position => {
+                setLocation(position)
+                setLat(position.coords.latitude)
+                setLong(position.coords.longitude)
+                alert(lat)
+                alert(long)
+			},
+			error => alert(error.message),
+			{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+        );
+                   
+    };
+    
+    // useEffect(findCoordinates)
+   
+
+
     return (
         <View style={employeeHomeStyles.container}>
            

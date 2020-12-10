@@ -1,17 +1,27 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'react-native';
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
 import {notiStyles} from '../styles'
 import { Entypo } from '@expo/vector-icons'; 
+import axios from 'axios'
 
 export default function reportList({navigation}) {
-    const[report,setReport]=useState([
-        {id:"3D44",reportName: "Research A Report",employee:'Kyaw Kyaw'},
-        {id:"3D45",reportName: "Research B Report",employee:'Maung Maung'},
-        {id:"3D46",reportName: "Research C Report",employee:'Hla Hla'},
-    ])
+    const workspaceId="1"
+    const[data,setData]=useState()
     
+    
+    useEffect(()=>{
+        axios.get(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/report/${workspaceId}`)
+        .then(function (response) {
+            setData(response.data) 
+            alert(JSON.stringify(response))
+        })
+        .catch(function (error) {
+           console.log(error);
+        });
+    },[])
+
     return (
         <View style={styles.container}>
             <View style={styles.headerBox}>
@@ -27,7 +37,7 @@ export default function reportList({navigation}) {
             </View>
             
             <View style={notiStyles.notiContainer}>
-            <FlatList style={{height:'100%',margin:10}} data={report} keyExtractor={(item)=>item.id}  renderItem={({item})=>(
+            <FlatList style={{height:'100%',margin:10}} data={data} keyExtractor={(item)=>item.id}  renderItem={({item})=>(
               <View style={reportStyles.titleContainer}>
                   <TouchableOpacity onPress={()=>navigation.navigate('ReportDetail',item)}>
                     <Text style={{textAlign:'center',fontSize:15}}>{item.reportName}</Text>

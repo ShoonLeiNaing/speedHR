@@ -1,39 +1,51 @@
 import React,{useState,useEffect} from 'react'
-import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'react-native';
+import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,KeyboardAvoidingView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
 import {postStyles} from './Newsfeed'
 import { Feather } from '@expo/vector-icons'; 
 import axios from 'axios'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 
 
 export default function Comments({route,navigation}) {
-    const postId=route.params.id
-    const commentId="19111607331739821"
-    
+    var postId=route.params.postId
+    const workerId="911"
+    // const postId="19111607331739821"
     const URL="https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/comment/19111607331739821"
     const[data,setData]=useState([])
+    const[comment,setComment]=useState(" ")
     const[isLoading,setLoading]=useState(true)
     useEffect(()=>{
-        axios.get(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/comment/${commentId}`)
+        axios.get(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/comment/${postId}`)
         .then(function (response) {
             setData(response.data)
-            navigation.navigate('SayargyiHome')
+            
         })
         .catch(function (error) {
             alert(error);
         });
     },[])
-
-    const[comment,setComment]=useState([
-        {id:'1', employee:'Kyaw Kyaw',text:'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
-        {id:'2', employee:'Maung Maung',text:'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
-        {id:'3', employee:'Hla Hla',text:'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
-        {id:'4', employee:'Aung Aung',text:'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
-        {id:'5', employee:'Kyaw Kyaw',text:'What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry'}
-    ])
+    
+    const commentSend=()=>{     
+        axios.post(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/comment/${postId}`, {
+            Postdate:"22222",
+            data:comment,
+            postId:postId,
+            workerId:workerId
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+    
     return (
+        <KeyboardAvoidingView style={{flex:1}} behavior="padding">
         <View style={styles.container}>
             <View style={commentStyles.postForm}>
                 <FlatList  data={data} keyExtractor={(item)=>item.commentId}  renderItem={({item})=>(
@@ -46,27 +58,26 @@ export default function Comments({route,navigation}) {
                                 <Text style={{marginBottom:10,fontWeight:'bold'}}>{item.workerId}</Text>
                                 <Text>{item.data}</Text>
                             </View>
-
                         </View>
-                        
-                       
-
                     </View>
                 )}/>
                 <View>
                     <View style={commentStyles.commentBox}>
                         <View style={commentStyles.inputBox}>
-                            <TextInput multiline={true} placeholder ="Write a comment" style={{padding:10, paddingTop:15, borderRadius:30, borderColor:'#797979',
+                            <TextInput multiline={true} onChangeText={(comment)=>setComment(comment)} placeholder ="Write a comment" style={{padding:10, paddingTop:15, borderRadius:30, borderColor:'#797979',
                             borderWidth:1,marginHorizontal:20,height:50}}/>
                         </View>
                         <View style={commentStyles.addComment}>
+                            <TouchableOpacity onPress={commentSend}>
                             <Feather name="send" size={24} color='#797979'/>
+                            </TouchableOpacity>
                         </View>
                             
                     </View>
                 </View>
             </View>
         </View>
+        </KeyboardAvoidingView>
     )
 }
 

@@ -16,20 +16,16 @@ export default function MyTasks({navigation}) {
     useEffect(()=>{
         axios.get(URL)
         .then(function (response) {
+            
             setData(response.data) 
-            alert(data)
+            
         })
         .catch(function (error) {
             alert(error);
         });
     },[])
 
-    const[task,setTask]=useState([
-        {id:'4D7782' ,name:'Video Editing for project A', deadline:'8:30AM',location:'office'},
-        {id:'4D9782' ,name:'Video Editing for project B', deadline:'8:30AM',location:'office'},
-        {id:'4DF782' ,name:'Video Editing for project C', deadline:'8:30AM',location:'office'},
-        {id:'4DF793' ,name:'Video Editing for project C', deadline:'8:30AM',location:'office'},
-    ])
+    
     return (
         <View style={employeeHomeStyles.container}>
            
@@ -44,14 +40,14 @@ export default function MyTasks({navigation}) {
                   <Image  source={require('../assets/pic3.png')} style={styles.Image}/>
                 </View>
             </View>
-            <FlatList data={task} style={{marginVertical:30,flex:1,marginHorizontal:10}} renderItem={({item})=>(
+            <FlatList data={data} keyExtractor={(item)=>item.taskId} style={{marginVertical:30,flex:1,marginHorizontal:10}} renderItem={({item})=>(
                 <View style={employeeTaskStyles.taskContainer}>
                     <View style={employeeTaskStyles.individualRow}>
                         <View style={{flex:1}}>
                             <Text>Task ID </Text>
                         </View>
                         <View style={{flex:1}}>
-                            <Text>:  {item.id}</Text>
+                            <Text>:  {item.taskId}</Text>
                         </View>
                         <View style={{flex:1,alignItems:'flex-end'}}>
                             <FontAwesome name="exclamation-circle" size={24} color="red" />
@@ -62,7 +58,7 @@ export default function MyTasks({navigation}) {
                             <Text>Task Title </Text>
                         </View>
                         <View style={employeeTaskStyles.textContainer}>
-                            <Text>:  {item.name}</Text>
+                            <Text>:  {item.topic}</Text>
                         </View>
                     </View>
                     <View style={employeeTaskStyles.individualRow}>
@@ -70,7 +66,7 @@ export default function MyTasks({navigation}) {
                             <Text>Deadline</Text>
                         </View>
                         <View style={employeeTaskStyles.titleContainer}>
-                            <Text>:  {item.deadline}</Text>
+                            <Text>:  {item.time}</Text>
                         </View>
                         <View style={employeeTaskStyles.buttonContainer}>
                             <TouchableOpacity onPress={()=>navigation.navigate('EmployeeTaskDetail',item)}>

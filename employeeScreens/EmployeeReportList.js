@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'react-native';
 import {employeeHomeStyles} from '../employeeStyles'
 import {styles} from '../styles'
@@ -6,20 +6,24 @@ import { Entypo } from '@expo/vector-icons';
 import {reportDetailStyles} from '../screens/ReportDetail'
 import { Button } from 'react-native-elements';
 import {taskStyles} from '../styles'
+import axios from 'axios'
 
 
 export default function EmployeeReportList({navigation}) {
-   const[report,setReport]=useState([
-        {
-            id:'43D5',title:'Research for project A',location:'Yangon'
-        },
-        {
-            id:'43D7',title:'Research for project A',location:'Yangon'
-        },
-        {
-            id:'43D0',title:'Research for project A',location:'Yangon'
-        }
-   ])
+    const workerId=911
+    const URL=`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/getHistory/${workerId}`
+    const[isLoading,setLoading]=useState(true)
+    const[data,setData]=useState([])
+    
+    useEffect(()=>{
+        axios.get(URL)
+        .then(function (response) {
+            setData(response.data)  
+        })
+        .catch(function (error) {
+            alert(error);
+        });
+    },[])
     return (
         <View style={employeeHomeStyles.container}>
            
@@ -34,10 +38,10 @@ export default function EmployeeReportList({navigation}) {
                   <Image  source={require('../assets/pic3.png')} style={styles.Image}/>
                 </View>
             </View>
-            <FlatList style={{flex:1,marginVertical:20}} data={report} renderItem={({item})=>(
+            <FlatList style={{flex:1,marginVertical:20}} data={data} keyExtractor={(item)=>item.taskId} renderItem={({item})=>(
             <View style={reportList.reportContainer}>
                 <View style={reportDetailStyles.reportTitleContainer}>
-                    <Text style={{fontSize:18}}>{item.title}</Text>
+                    <Text style={{fontSize:18}}>{item.topic}</Text>
                 </View>
 
                 <View style={reportDetailStyles.reportTitleContainer}>
@@ -45,7 +49,7 @@ export default function EmployeeReportList({navigation}) {
                         <Text style={{fontSize:15}}>Task ID :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:17,}}>{item.id}</Text>
+                        <Text style={{fontSize:17,}}>{item.taskId}</Text>
                     </View>
                 </View>
                 <View style={reportDetailStyles.reportTitleContainer}>
@@ -61,7 +65,7 @@ export default function EmployeeReportList({navigation}) {
                         <Text style={{fontSize:15}}>Customer :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:17}}>Kyaw Kyaw</Text>
+                        <Text style={{fontSize:17}}>{item.customer}</Text>
                     </View>
                 </View>
 
@@ -70,7 +74,7 @@ export default function EmployeeReportList({navigation}) {
                         <Text style={{fontSize:15}}>Product :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:17,}}>Fertilizer</Text>
+                        <Text style={{fontSize:17,}}>{item.product}</Text>
                     </View>
                 </View>
                 <View style={reportDetailStyles.attachmentContainer}>
@@ -78,7 +82,7 @@ export default function EmployeeReportList({navigation}) {
                         <Text style={{fontSize:15}}>Topic :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:17,}}>To sell fertilizer</Text>
+                        <Text style={{fontSize:17,}}>{item.topic}</Text>
                     </View>
                 </View>
                 <View style={reportList.reportDescriptionContainer}>
@@ -86,8 +90,7 @@ export default function EmployeeReportList({navigation}) {
                         <Text style={{fontSize:15}}>Description :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>   
-                        <Text style={{fontSize:15,margin:5}}>Lorem Ipsum is simply dummy 
-                        text of the printing and typesetting industry.</Text>
+                        <Text style={{fontSize:15,margin:5}}>{item.info}</Text>
                     </View>
                 </View>
                 
