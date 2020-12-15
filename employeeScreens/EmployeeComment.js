@@ -6,6 +6,7 @@ import {employeeStyles} from '../styles'
 import {postStyles} from '../screens/Newsfeed'
 import { Feather } from '@expo/vector-icons';
 import axios from 'axios' 
+import { employeeHomeStyles } from '../employeeStyles';
 
 
 export default function Comments({route,navigation}) {
@@ -41,12 +42,12 @@ export default function Comments({route,navigation}) {
 
     return (
         <KeyboardAvoidingView style={{flex:1}} behavior="padding">
-        <View style={styles.container}>
+        <View style={employeeHomeStyles.container}>
             <View style={commentStyles.postForm}>
                 <FlatList  data={data} keyExtractor={(item)=>item.commentId} renderItem={({item})=>(
                     <View style={commentStyles.commentContainer}>
                         <View style={commentStyles.profilePic}>
-                            <Image  source={require('../assets/pic.jpg')} style={{height:40,width:40,borderRadius:200}} />
+                            <Image  source={require('../assets/pic.png')} style={{height:40,width:40,borderRadius:200}} />
                         </View>
                         <View style={commentStyles.textContainer}>
                             <View >

@@ -50,7 +50,7 @@ export default function SayargyiHome({navigation}){
                 <View style={styles.headerBoxText}>
                     <Text style={styles.title}>Welcome</Text>
                     <View style={styles.datebox}>
-                        <Text style={styles.date}>11/2/2020</Text>
+                        <Text style={styles.date}>12/11/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>

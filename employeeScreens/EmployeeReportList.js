@@ -31,7 +31,7 @@ export default function EmployeeReportList({navigation}) {
                 <View style={styles.headerBoxText}>
                     <Text style={styles.title}>Reports List</Text>
                     <View style={employeeHomeStyles.datebox}>
-                        <Text style={styles.date}>11/2/2020</Text>
+                        <Text style={styles.date}>12/11/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
@@ -65,7 +65,7 @@ export default function EmployeeReportList({navigation}) {
                         <Text style={{fontSize:15}}>Customer :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:17}}>{item.customer}</Text>
+                        <Text style={{fontSize:17}}>{item.Customer}</Text>
                     </View>
                 </View>
 
@@ -74,7 +74,7 @@ export default function EmployeeReportList({navigation}) {
                         <Text style={{fontSize:15}}>Product :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:17,}}>{item.product}</Text>
+                        <Text style={{fontSize:17,}}>{item.Product}</Text>
                     </View>
                 </View>
                 <View style={reportDetailStyles.attachmentContainer}>

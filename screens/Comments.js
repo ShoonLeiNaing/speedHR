@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,KeyboardAvoidingView} from 'react-native';
+import {Text,StyleSheet,View,FlatList,Image,ScrollView,RefreshControl,TouchableOpacity,KeyboardAvoidingView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
@@ -12,12 +12,25 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 export default function Comments({route,navigation}) {
     var postId=route.params.postId
-    const workerId="911"
+    const workerId="Shoon Lei"
     // const postId="19111607331739821"
     const URL="https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/comment/19111607331739821"
     const[data,setData]=useState([])
     const[comment,setComment]=useState(" ")
     const[isLoading,setLoading]=useState(true)
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+
+        wait(2000).then(() => setRefreshing(false));
+    }, []);
+
+    const wait = (timeout) => {
+        return new Promise(resolve => {
+          setTimeout(resolve, timeout);
+        });
+      }
     useEffect(()=>{
         axios.get(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/comment/${postId}`)
         .then(function (response) {
@@ -48,10 +61,10 @@ export default function Comments({route,navigation}) {
         <KeyboardAvoidingView style={{flex:1}} behavior="padding">
         <View style={styles.container}>
             <View style={commentStyles.postForm}>
-                <FlatList  data={data} keyExtractor={(item)=>item.commentId}  renderItem={({item})=>(
+                <FlatList  refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}data={data} keyExtractor={(item)=>item.commentId}  renderItem={({item})=>(
                     <View style={commentStyles.commentContainer}>
                         <View style={commentStyles.profilePic}>
-                            <Image  source={require('../assets/pic.jpg')} style={{height:40,width:40,borderRadius:200}} />
+                            <Image  source={require('../assets/pic.png')} style={{height:40,width:40,borderRadius:200}} />
                         </View>
                         <View style={commentStyles.textContainer}>
                             <View >

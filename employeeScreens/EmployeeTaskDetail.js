@@ -22,7 +22,7 @@ export default function EmployeeTaskDetail({route,navigation}) {
         axios.get(URL)
         .then(function (response) {
             setData(response.data) 
-            // alert(data.taskId)
+            
         })
         .catch(function (error) {
             alert(error);
@@ -35,7 +35,7 @@ export default function EmployeeTaskDetail({route,navigation}) {
        location:route.params.location,
        topic:route.params.topic,
        customer:route.params.customer,
-       product:route.params.topic,
+       Product:route.params.Product,
        deadline:route.params.time
     })
     return (
@@ -45,7 +45,7 @@ export default function EmployeeTaskDetail({route,navigation}) {
                 <View style={styles.headerBoxText}>
                     <Text style={styles.title}>Welcome</Text>
                     <View style={employeeHomeStyles.datebox}>
-                        <Text style={styles.date}>11/2/2020</Text>
+                        <Text style={styles.date}>12/11/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
@@ -88,7 +88,7 @@ export default function EmployeeTaskDetail({route,navigation}) {
                         <Text style={{fontSize:15}}>Product :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:17,}}>{task.product}</Text>
+                        <Text style={{fontSize:17,}}>{task.Product}</Text>
                     </View>
                 </View>
                 <View style={reportDetailStyles.attachmentContainer}>

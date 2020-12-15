@@ -9,10 +9,12 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 export default function AppointmentDetails({route,navigation}) {
     const[appointment,setAppointment]=useState({
-        id:route.params.id,
-        name:route.params.name,
-        Start:route.params.Start,
-        End:route.params.End,
+        meetingId:route.params.meetingId,
+        title:route.params.title,
+        starttime:route.params.starttime,
+        endtime:route.params.endtime,
+        additionalInfo:route.params.additionalInfo,
+        date:route.params.date
     })
     
     return (
@@ -22,7 +24,7 @@ export default function AppointmentDetails({route,navigation}) {
                 <View style={styles.headerBoxText}>
                     <Text style={styles.title}>Appointment Details</Text>
                     <View style={styles.datebox}>
-                        <Text style={styles.date}>11/2/2020</Text>
+                        <Text style={styles.date}>12/11/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
@@ -31,7 +33,7 @@ export default function AppointmentDetails({route,navigation}) {
             </View>
             <View style={addAppointmentStyles.reportContainer}> 
                 <View style={addAppointmentStyles.reportTitleContainer}>
-                    <Text style={{fontSize:18}}>{appointment.name}</Text>
+                    <Text style={{fontSize:18}}>{appointment.title}</Text>
                 </View>
                 
                 <View style={addAppointmentStyles.reportTitleContainer}>
@@ -39,7 +41,7 @@ export default function AppointmentDetails({route,navigation}) {
                         <Text style={{fontSize:15}}>Start :</Text>
                     </View>
                     <View style={addAppointmentStyles.infoContainer}>
-                        <Text style={{fontSize:18,fontWeight:'500'}}>{appointment.Start}</Text>
+                        <Text style={{fontSize:18,fontWeight:'500'}}>{appointment.starttime}</Text>
                     </View>
                 </View>
 
@@ -48,7 +50,15 @@ export default function AppointmentDetails({route,navigation}) {
                         <Text style={{fontSize:15}}>End :</Text>
                     </View>
                     <View style={addAppointmentStyles.infoContainer}>
-                        <Text style={{fontSize:18,fontWeight:'500'}}>{appointment.End}</Text>
+                        <Text style={{fontSize:18,fontWeight:'500'}}>{appointment.endtime}</Text>
+                    </View>
+                </View>
+                <View style={addAppointmentStyles.reportTitleContainer}>
+                    <View style={addAppointmentStyles.textContainer}>
+                        <Text style={{fontSize:15}}>Date :</Text>
+                    </View>
+                    <View style={addAppointmentStyles.infoContainer}>
+                        <Text style={{fontSize:18,fontWeight:'500'}}>{appointment.date}</Text>
                     </View>
                 </View>
 
@@ -57,10 +67,7 @@ export default function AppointmentDetails({route,navigation}) {
                         <Text style={{fontSize:15}}>Agenda :</Text>
                     </View>
                     <View style={addAppointmentStyles.infoContainer}>   
-                        <Text style={{fontSize:15,}}>Lorem Ipsum is simply dummy 
-                        text of the printing and typesetting industry.Lorem Ipsum is simply dummy 
-                        text of the printing and typesetting industry.Lorem Ipsum is simply dummy 
-                        text of the printing and typesetting industry.</Text>
+                        <Text style={{fontSize:15,}}>{appointment.additionalInfo}</Text>
                     </View>
                 </View>
                 <View style={addAppointmentStyles.attachmentContainer}>

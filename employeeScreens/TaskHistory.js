@@ -33,7 +33,7 @@ export default function TaskHistory({navigation}) {
                 <View style={styles.headerBoxText}>
                     <Text style={styles.title}>Tasks History</Text>
                     <View style={employeeHomeStyles.datebox}>
-                        <Text style={styles.date}>11/2/2020</Text>
+                        <Text style={styles.date}>12/11/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>

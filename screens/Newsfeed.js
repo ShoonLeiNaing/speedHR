@@ -1,5 +1,5 @@
 import  React,{useState,useEffect} from 'react'
-import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,TouchableWithoutFeedback, Alert,Modal,TouchableHighlight, Keyboard, ActivityIndicator} from 'react-native';
+import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity,TouchableWithoutFeedback, Alert,Modal,TouchableHighlight, Keyboard, ActivityIndicator,RefreshControl} from 'react-native';
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
 import {taskStyles} from '../styles'
@@ -25,42 +25,19 @@ export default function Newsfeed({navigation}) {
     const[asyncstorage,setAsyncstorage]=useState([])
     const[connection,setConnection]=useState()
 
-    const saveData=async()=>{
-        AsyncStorage.setItem('data',postText)
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = React.useCallback(() => {
+        setRefreshing(true);
+
+        wait(2000).then(() => setRefreshing(false));
+    }, []);
+
+    const wait = (timeout) => {
+        return new Promise(resolve => {
+          setTimeout(resolve, timeout);
+        });
       }
-
-      const displayData=async()=>{
-        try{
-          let obj = await AsyncStorage.getItem('data');
-          if(obj!=null){
-            console.log(obj)
-            axios.post(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/newsfeed/${workspaceId}`, {
-                workerId:'12',
-                data: obj
-            })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-            AsyncStorage.clear()
-
-          }
-          
-          
-        }
-        catch(error){
-          alert(error)
-        }
-      }
-
-    // useEffect(()=>{
-    //     NetInfo.fetch().then(state => {      
-    //         setConnection(state.isConnected)       
-    //     });
-    //     displayData()
-    // },[])
     
     useEffect(()=>{
         axios.get(URL)
@@ -73,13 +50,9 @@ export default function Newsfeed({navigation}) {
     },[])
   
    const postSubmit=()=>{
-    NetInfo.fetch("wifi").then(state => {      
-        setConnection(state.isConnected)       
-    });
-
-    if(connection){
+  
         axios.post(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/newsfeed/${workspaceId}`, {
-            workerId:'12',
+            workerId:'Shoon Lei',
             data: postText
           })
           .then(function (response) {
@@ -89,16 +62,6 @@ export default function Newsfeed({navigation}) {
             console.log(error);
           });
           setModalVisible(false)
-    }else{
-        
-        saveData()
-        // setAsyncstorage({workerId:'12',data:postText})
-        // console.log(asyncstorage)
-    }
-
-    
-    
-
     
    }
     return (
@@ -139,17 +102,18 @@ export default function Newsfeed({navigation}) {
             </TouchableOpacity>
             
             <View style={postStyles.postForm}>
-                <FlatList style={{flex:1}} data={data} keyExtractor={(item)=>item.postId} renderItem={({item})=>(
+                <FlatList 
+                 refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />} style={{flex:1}} data={data} keyExtractor={(item)=>item.postId} renderItem={({item})=>(
                     <View style={postStyles.postContainer}>
                         <View style={postStyles.postHeaderContainer}>
                             <View style={postStyles.employeeProfilePic}>
-                                <Image source={require('../assets/pic.jpg')} style={{height:40,width:40,alignSelf:'center'}} />
+                                <Image source={require('../assets/pic.png')} style={{height:40,width:40,alignSelf:'center',borderRadius:20}} />
                             </View>
                             <View style={postStyles.employeeProfileName}>
                                 <Text style={{marginLeft:10}}>{item.workerId}</Text>
                             </View>
                             <View style={postStyles.postDate}>
-                                <Text style={{fontSize:10}}>{item.Postdate}</Text>
+                                <Text style={{fontSize:10}}></Text>
                             </View>
                         </View>
                         <View style={postStyles.textContainer}>

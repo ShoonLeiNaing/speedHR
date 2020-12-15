@@ -17,6 +17,7 @@ export default function EmployeeList({route,navigation}) {
     const[topic,setTopic]=useState(" ")
     const[product,setProduct]=useState(" ")
     const[info,setInfo]=useState(" ")
+    
     const addTaskHandler =() =>{
         Alert.alert(
             'Assigning Task',
@@ -52,7 +53,7 @@ export default function EmployeeList({route,navigation}) {
     var name=route.params.name;
     const[employee,setEmployee]=useState({
         id:route.params.id,
-        name:route.params.name,
+        Name:route.params.Name,
         score:route.params.score,
         currentAssignTasks:'3'
     })
@@ -78,10 +79,10 @@ export default function EmployeeList({route,navigation}) {
 
                 <View style={taskStyles.profileDetail}>
                      <View style={taskStyles.profilePicture}>
-                        <Image  source={require('../assets/pic.jpg')} style={taskStyles.profileImage}/>
+                        <Image  source={require('../assets/pic.png')} style={taskStyles.profileImage}/>
                     </View>
                     <View style={taskStyles.profileNameText}>
-                        <Text>{employee.name}</Text>
+                        <Text>{employee.Name}</Text>
                     </View>
                     <View style={taskStyles.profileScoreText}>
                         <Text>{employee.score}</Text>

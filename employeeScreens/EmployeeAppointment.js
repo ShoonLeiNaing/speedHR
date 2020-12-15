@@ -1,7 +1,7 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'react-native';
 import {employeeHomeStyles} from '../employeeStyles'
-import {styles} from '../styles'
+import {employeeStyles, styles} from '../styles'
 import { Entypo } from '@expo/vector-icons'; 
 import { Button } from 'react-native-elements';
 import {taskStyles} from '../styles'
@@ -9,6 +9,20 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 export default function UpcomingAppointment({navigation}) {
+
+    // const workspaceId="1"
+
+    // useEffect(()=>{
+    //     axios.get(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/meeting/${workspaceId}`)
+    //     .then(function (response) {
+    //         setData(response.data) 
+    //         alert(data)
+    //     })
+    //     .catch(function (error) {
+    //        console.log(error);
+    //     });
+    // },[])
+
     const[appointment,setAppointment]=useState([
         {id:'1' ,name:'Appointment for project A', Start:'8:30 AM',End:'1:30 PM'},
         {id:'2' ,name:'Appointment for project B', Start:'8:30 AM',End:'1:30 PM'},
@@ -22,7 +36,7 @@ export default function UpcomingAppointment({navigation}) {
                     <Button title="Upcoming" titleStyle={{fontSize:15,color:'black'}} buttonStyle={appointmentStyles.Upcomingbutton}/>
                 </View>
                 <View style={appointmentStyles.buttonBox}>
-                    <Button onPress={()=>navigation.navigate('PreviousAppointment')} title="Previous" titleStyle={{fontSize:15,color:'black'}} buttonStyle={appointmentStyles.button}/>
+                    <Button onPress={()=>navigation.navigate('EmployeePrevious')} title="Previous" titleStyle={{fontSize:15,color:'black'}} buttonStyle={appointmentStyles.button}/>
                 </View>
                 <View style={{flex:0.5, justifyContent:'center',alignItems:'flex-start'}}>
                     
@@ -56,7 +70,7 @@ export default function UpcomingAppointment({navigation}) {
                             <Text>:  {item.End}</Text>
                         </View>
                         <View style={appointmentStyles.buttonContainer}>
-                            <TouchableOpacity onPress={()=>navigation.navigate('AppointmentDetails',item)}>
+                            <TouchableOpacity onPress={()=>navigation.navigate('EmployeeAppointmentDetail',item)}>
                             <Entypo name="arrow-with-circle-right" size={24} color='#235347' style={{marginBottom:-20}}  />
                             </TouchableOpacity>
                         </View>

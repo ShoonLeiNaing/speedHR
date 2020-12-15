@@ -3,16 +3,16 @@ import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'r
 import {styles} from '../styles'
 import {employeeStyles} from '../styles'
 import {notiStyles} from '../styles'
-import {employeeHomeStyles} from '../employeeStyles'
 import { Entypo } from '@expo/vector-icons'; 
+import { employeeHomeStyles } from '../employeeStyles';
 
 
 
-export default function EmployeeNotifications({navigation}) {
+export default function Notifications({navigation}) {
     const[noti,setNoti]=useState([
-        {id:'1',notiText: "You have assigned a Task  Eat the breakfast "},
-        {id:'2',notiText: "Kyaw Kyaw has assigned his report on Task “ Eat the breakfast “"},
-        {id:'3',notiText: "You have assigned a Task  Eat the breakfast "},
+        {id:'1',notiText: "You didn't finish the task “ Sales for new product “ on time"},
+        {id:'2',notiText: "Area Manager accept your report for “ Research for new product “"},
+        {id:'3',notiText: "Area Manager assign a new task"},
 
     ])
     
@@ -22,11 +22,11 @@ export default function EmployeeNotifications({navigation}) {
                 <View style={styles.headerBoxText}>
                     <Text style={styles.title}>Notifications</Text>
                     <View style={employeeHomeStyles.datebox}>
-                        <Text style={styles.date}>11/2/2020</Text>
+                        <Text style={styles.date}>12/11/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
-                  <Image  source={require('../assets/pic.jpg')} style={styles.Image}/>
+                  <Image  source={require('../assets/pic2.jpg')} style={styles.Image}/>
                 </View>
             </View>
             
@@ -34,7 +34,7 @@ export default function EmployeeNotifications({navigation}) {
             <FlatList style={{height:'100%',margin:10}} data={noti} keyExtractor={(item)=>item.id}  renderItem={({item})=>(
               <View style={notiStyles.notiContainerIndividual}>
                 <View style={notiStyles.notiImageContainer}>
-                    <Image source={require('../assets/pic.jpg')} style={{height:40,width:40,alignSelf:'center'}} />
+                    <Image source={require('../assets/pic.png')} style={{height:40,width:40,alignSelf:'center'}} />
                 </View>
                 <View style={notiStyles.notiTextContainer}>
                     <Text style={{width:'100%'}}>{item.notiText}</Text>

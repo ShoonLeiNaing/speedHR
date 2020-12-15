@@ -8,21 +8,21 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Profile({route,navigation}) {
     const[employee,setEmployee]=useState(
-        {   id:route.params.id,
-            name:route.params.name,
+        {   id:route.params.workerId,
+            name:route.params.Name,
             workerType:route.params.workerType
         }
     )
     return (
        <View style={styles.container}>
-           <Image  source={require('../assets/pic.jpg')} style={profileStyles.image}/>
+           <Image  source={require('../assets/pic.png')} style={profileStyles.image}/>
             <View style={profileStyles.profileContainer}>
                 
                 <Text style={profileStyles.name}>{employee.name}</Text>
                 <Text style={profileStyles.workerType} >{employee.workerType}</Text>
                 <View style={profileStyles.bottomContainer}>
                     <View style={profileStyles.bottomSmallContainer}>
-                        <TouchableOpacity onPress={()=>navigation.navigate('Location')}>
+                        <TouchableOpacity onPress={()=>navigation.navigate('Location',employee)}>
                         <View style={profileStyles.TextContainer}>
                             <Entypo name="location" size={24} color="black" style={{flex:1,justifyContent:"flex-start",marginLeft:20}} />
                             <Text style={profileStyles.Text}>Current Location</Text>
@@ -31,7 +31,7 @@ export default function Profile({route,navigation}) {
                        
                     </View>
                     <View style={profileStyles.bottomSmallContainer}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>navigation.navigate('EmployeesCurrentTask')}>
                         <View style={profileStyles.TextContainer}>
                             <Octicons name="tasklist" size={24} color="black"  style={{flex:1,justifyContent:"flex-start",marginLeft:20}}/>
                             <Text style={profileStyles.Text}>Current Task</Text>

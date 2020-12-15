@@ -11,8 +11,8 @@ export default function()
 {
     return(
         <DrawerNavigator.Navigator>
-            <DrawerNavigator.Screen name = "AdminHomeStack" component={AdminHomeStack} ></DrawerNavigator.Screen>
-            <DrawerNavigator.Screen name="EmployeeHomeStack" component={EmployeeHomeStack}></DrawerNavigator.Screen>
+            <DrawerNavigator.Screen name = "Admin" component={AdminHomeStack} ></DrawerNavigator.Screen>
+            <DrawerNavigator.Screen name="Employee" component={EmployeeHomeStack}></DrawerNavigator.Screen>
         </DrawerNavigator.Navigator>
     )
 }

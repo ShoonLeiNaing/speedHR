@@ -17,6 +17,7 @@ import PreviousAppointment from './screens/PreviousAppoinment'
 import AddAppointment from './screens/AddAppointment'
 import AppointmentDetails from './screens/AppointmentDetails'
 import Location from './screens/Location'
+import EmployeesCurrentTask from './screens/EmployeesCurrentTask'
 
 
 const AdminHomeStack = createStackNavigator()
@@ -25,7 +26,7 @@ export default function()
 {
     return (
         <AdminHomeStack.Navigator>
-            <AdminHomeStack.Screen name="SayargyiHome" component={SayargyiHome}></AdminHomeStack.Screen>
+            <AdminHomeStack.Screen name="Admin Home" component={SayargyiHome}></AdminHomeStack.Screen>
             <AdminHomeStack.Screen name="EmployeeList" component={EmployeeList}></AdminHomeStack.Screen>
             <AdminHomeStack.Screen name="Profile" component={Profile}></AdminHomeStack.Screen>
             <AdminHomeStack.Screen name="Scoreboard" component={Scoreboard}></AdminHomeStack.Screen>
@@ -41,6 +42,7 @@ export default function()
             <AdminHomeStack.Screen name="AddAppointment" component={AddAppointment}></AdminHomeStack.Screen>
             <AdminHomeStack.Screen name="AppointmentDetails" component={AppointmentDetails}></AdminHomeStack.Screen>
             <AdminHomeStack.Screen name="Location" component={Location}></AdminHomeStack.Screen>
+            <AdminHomeStack.Screen name="EmployeesCurrentTask" component={EmployeesCurrentTask}></AdminHomeStack.Screen>
 
         </AdminHomeStack.Navigator>
     )

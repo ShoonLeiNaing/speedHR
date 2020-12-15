@@ -15,7 +15,6 @@ export default function reportList({navigation}) {
         axios.get(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/report/${workspaceId}`)
         .then(function (response) {
             setData(response.data) 
-            alert(JSON.stringify(response))
         })
         .catch(function (error) {
            console.log(error);
@@ -28,7 +27,7 @@ export default function reportList({navigation}) {
                 <View style={styles.headerBoxText}>
                     <Text style={styles.title}>Reports</Text>
                     <View style={styles.datebox}>
-                        <Text style={styles.date}>11/2/2020</Text>
+                        <Text style={styles.date}>12/11/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
@@ -37,10 +36,10 @@ export default function reportList({navigation}) {
             </View>
             
             <View style={notiStyles.notiContainer}>
-            <FlatList style={{height:'100%',margin:10}} data={data} keyExtractor={(item)=>item.id}  renderItem={({item})=>(
+            <FlatList style={{height:'100%',margin:10}} data={data} keyExtractor={(item)=>item.taskId}  renderItem={({item})=>(
               <View style={reportStyles.titleContainer}>
                   <TouchableOpacity onPress={()=>navigation.navigate('ReportDetail',item)}>
-                    <Text style={{textAlign:'center',fontSize:15}}>{item.reportName}</Text>
+                    <Text style={{textAlign:'center',fontSize:15}}>{item.topic}</Text>
                   </TouchableOpacity>   
                </View>
             )}/>

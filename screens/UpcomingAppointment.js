@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {Text,StyleSheet,View,FlatList,Image,ScrollView,TouchableOpacity} from 'react-native';
 import {employeeHomeStyles} from '../employeeStyles'
 import {styles} from '../styles'
@@ -9,6 +9,20 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 export default function UpcomingAppointment({navigation}) {
+
+    // const workspaceId="1"
+
+    // useEffect(()=>{
+    //     axios.get(`https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/meeting/${workspaceId}`)
+    //     .then(function (response) {
+    //         setData(response.data) 
+    //         alert(data)
+    //     })
+    //     .catch(function (error) {
+    //        console.log(error);
+    //     });
+    // },[])
+
     const[appointment,setAppointment]=useState([
         {id:'1' ,name:'Appointment for project A', Start:'8:30 AM',End:'1:30 PM'},
         {id:'2' ,name:'Appointment for project B', Start:'8:30 AM',End:'1:30 PM'},

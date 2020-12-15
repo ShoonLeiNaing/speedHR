@@ -4,16 +4,53 @@ import {styles} from '../styles'
 import { Entypo } from '@expo/vector-icons'; 
 import { Button } from 'react-native-elements';
 import {taskStyles} from '../styles'
+import axios from 'axios'
 
 
 export default function ReportDetail({route,navigation}) {
-    const[report,setReport]=useState({
-        taskId:route.params.taskId,
-        reportName:route.params.reportName,
-        reportText:route.params.reportText
-    })
-
     
+    const[task,setTask]=useState({
+        taskId:route.params.taskId,
+        info:route.params.info,
+        location:route.params.location,
+        topic:route.params.topic,
+        customer:route.params.customer,
+        product:route.params.topic,
+        deadline:route.params.time,
+        worker:route.params.worker
+     })
+
+    const resubmitHandler=()=>{
+        axios.post('https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/control',
+                {
+                    taskId:task.taskId,
+                    flag:"RESUBMIT"
+                })
+                .then(function (response)
+                {
+                    console.log(response);
+                })
+                .catch(function (error)
+                {
+                    console.log(error);
+                });
+    }
+
+    const doneHandler=()=>{
+        axios.post('https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/control',
+                {
+                    taskId:task.taskId,
+                    flag:"ACCEPT"
+                })
+                .then(function (response)
+                {
+                    console.log(response);
+                })
+                .catch(function (error)
+                {
+                    console.log(error);
+                });
+    }
 
     return (
         <View style={styles.container}>
@@ -21,7 +58,7 @@ export default function ReportDetail({route,navigation}) {
                 <View style={styles.headerBoxText}>
                     <Text style={styles.title}>Report Details</Text>
                     <View style={styles.datebox}>
-                        <Text style={styles.date}>11/2/2020</Text>
+                        <Text style={styles.date}>12/11/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
@@ -31,7 +68,7 @@ export default function ReportDetail({route,navigation}) {
 
             <View style={reportDetailStyles.reportContainer}>
                 <View style={reportDetailStyles.reportTitleContainer}>
-                    <Text style={{fontSize:18}}>{report.reportName}</Text>
+                    <Text style={{fontSize:18}}>{task.topic}</Text>
                 </View>
 
                 <View style={reportDetailStyles.reportTitleContainer}>
@@ -39,7 +76,7 @@ export default function ReportDetail({route,navigation}) {
                         <Text style={{fontSize:15}}>Task ID :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:18,fontWeight:'500'}}>{report.id}</Text>
+                        <Text style={{fontSize:18,fontWeight:'500'}}>{task.taskId}</Text>
                     </View>
                 </View>
 
@@ -48,7 +85,7 @@ export default function ReportDetail({route,navigation}) {
                         <Text style={{fontSize:15}}>Employee :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>
-                        <Text style={{fontSize:18,fontWeight:'500'}}>{report.employee}</Text>
+                        <Text style={{fontSize:18,fontWeight:'500'}}>{task.worker}</Text>
                     </View>
                 </View>
 
@@ -57,8 +94,7 @@ export default function ReportDetail({route,navigation}) {
                         <Text style={{fontSize:15}}>Description :</Text>
                     </View>
                     <View style={reportDetailStyles.infoContainer}>   
-                        <Text style={{fontSize:15,}}>Lorem Ipsum is simply dummy 
-                        text of the printing and typesetting industry.</Text>
+                        <Text style={{fontSize:15,}}>{task.info}</Text>
                     </View>
                 </View>
                 <View style={reportDetailStyles.attachmentContainer}>
@@ -71,10 +107,10 @@ export default function ReportDetail({route,navigation}) {
                 </View>
                 <View style={reportDetailStyles.buttonContainer}>
                     <View style={reportDetailStyles.attachmentTextContainer}>
-                        <Button  title="Re-Submit" titleStyle={{fontSize:15,color:'black'}} buttonStyle={taskStyles.AddTaskButton}/>
+                        <Button  onPress={resubmitHandler} title="Re-Submit" titleStyle={{fontSize:15,color:'black'}} buttonStyle={taskStyles.AddTaskButton}/>
                     </View>
                     <View style={reportDetailStyles.attachmentIconContainer}>
-                        <Button  title="Done" titleStyle={{fontSize:15,color:'black'}} buttonStyle={taskStyles.AddTaskButton}/>
+                        <Button  onPress={doneHandler} title="Done" titleStyle={{fontSize:15,color:'black'}} buttonStyle={taskStyles.AddTaskButton}/>
                     </View>
                 </View>
             </View>

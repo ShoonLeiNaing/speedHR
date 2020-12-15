@@ -27,12 +27,12 @@ export default function MyTasks({navigation}) {
 
     
     return (
-        <View style={employeeHomeStyles.container}>
+        <View style={styles.container}>
            
             <View style={styles.headerBox}>
                 <View style={styles.headerBoxText}>
-                    <Text style={styles.title}>My Tasks</Text>
-                    <View style={employeeHomeStyles.datebox}>
+                    <Text style={styles.title}>Employee Tasks</Text>
+                    <View style={styles.datebox}>
                         <Text style={styles.date}>12/11/2020</Text>
                      </View>
                 </View>
@@ -41,9 +41,9 @@ export default function MyTasks({navigation}) {
                 </View>
             </View>
             <FlatList data={data} keyExtractor={(item)=>item.taskId} style={{marginVertical:30,flex:1,marginHorizontal:10}} 
-            renderItem={({item})=>{
-                if(item.report==null){
-                    return(
+            renderItem={({item})=>
+               
+                    (
                         <View style={employeeTaskStyles.taskContainer}>
                         <View style={employeeTaskStyles.individualRow}>
                             <View style={{flex:1}}>
@@ -53,7 +53,7 @@ export default function MyTasks({navigation}) {
                                 <Text>:  {item.taskId}</Text>
                             </View>
                             <View style={{flex:1,alignItems:'flex-end'}}>
-                                <FontAwesome name="exclamation-circle" size={24} color="red" />
+                                {/* <FontAwesome name="exclamation-circle" size={24} color="red" /> */}
                             </View>
                         </View>
                         <View style={employeeTaskStyles.individualRow}>
@@ -79,51 +79,8 @@ export default function MyTasks({navigation}) {
                         </View>
                     </View>
                     )
-                }else{
-                    return(
-                        <View style={employeeTaskStyles.taskContainer}>
-                        <View style={employeeTaskStyles.individualRow}>
-                            <View style={{flex:1}}>
-                                <Text>Task ID </Text>
-                            </View>
-                            <View style={{flex:1}}>
-                                <Text>:  {item.taskId}</Text>
-                            </View>
-                            <View style={{flex:1,alignItems:'flex-end'}}>
-                               
-                            </View>
-                        </View>
-                        <View style={employeeTaskStyles.individualRow}>
-                            <View style={employeeTaskStyles.titleContainer}>
-                                <Text>Task Title </Text>
-                            </View>
-                            <View style={employeeTaskStyles.textContainer}>
-                                <Text>:  {item.topic}</Text>
-                            </View>
-                        </View>
-                        <View style={employeeTaskStyles.individualRow}>
-                            <View style={employeeTaskStyles.titleContainer}>
-                                <Text>Deadline</Text>
-                            </View>
-                            <View style={employeeTaskStyles.titleContainer}>
-                                <Text>:  {item.time}</Text>
-                            </View>
-                            <View style={employeeTaskStyles.buttonContainer}>
-                                <TouchableOpacity onPress={()=>navigation.navigate('EmployeeTaskDetail',item)}>
-                                <Entypo name="arrow-with-circle-right" size={24} color='#235347' style={{marginBottom:-20}}  />
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                    )
-                }
-            }
-            // (
-           
-
-
-            // )
-        }/>
+                
+            }/>
             
 
             

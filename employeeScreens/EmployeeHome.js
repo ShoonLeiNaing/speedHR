@@ -9,21 +9,21 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { Marker,Callout,Polygon, Circle } from 'react-native-maps'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import axios from 'axios'
 
 export default function EmployeeHome({navigation}) {
     const [location,setLocation]=useState({})
     const[x,setX]=useState({})
     const[lat,setLat]=useState()
     const[long,setLong]=useState()
-
     const findCoordinates = () => {
 		navigator.geolocation.getCurrentPosition(
 			position => {
                 setLocation(position)
                 setLat(position.coords.latitude)
                 setLong(position.coords.longitude)
-                alert(lat)
-                alert(long)
+               
+                
 			},
 			error => alert(error.message),
 			{ enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
@@ -31,7 +31,28 @@ export default function EmployeeHome({navigation}) {
                    
     };
     
-    // useEffect(findCoordinates)
+    useEffect(()=>{
+        setTimeout(function(){
+            findCoordinates()
+            axios.post('https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/location',
+                {
+                    workerId:"912",
+                    name:"Kyaw Kyaw",
+                    workspaceId:'1',
+                    lat:lat,
+                    long:long
+                })
+                .then(function (response)
+                {
+                    console.log(response);
+                })
+                .catch(function (error)
+                {
+                    console.log(error);
+                });
+
+            },15000)  
+    })
    
 
 
@@ -42,7 +63,7 @@ export default function EmployeeHome({navigation}) {
                 <View style={styles.headerBoxText}>
                     <Text style={styles.title}>Welcome</Text>
                     <View style={employeeHomeStyles.datebox}>
-                        <Text style={styles.date}>11/2/2020</Text>
+                        <Text style={styles.date}>12/11/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
@@ -65,12 +86,14 @@ export default function EmployeeHome({navigation}) {
                 </View>
                 
                 <View style={employeeHomeStyles.individualContainer}>
+                    <TouchableOpacity onPress={()=>navigation.navigate('EmployeeAppointment')}>
                     <View style={employeeHomeStyles.individualBox}>
                         <View style={employeeHomeStyles.iconTitle}>
                             <AntDesign name="clockcircleo" size={24} color="black" style={{marginTop:15}}/>
                         </View>
                         <Text style={{fontSize:10,marginTop:10}}>Appointment</Text>
                     </View>
+                    </TouchableOpacity>
                 </View>
                 <View style={employeeHomeStyles.individualContainer}>
                 <TouchableOpacity onPress={()=>navigation.navigate('EmployeeReportList')}>

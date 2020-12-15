@@ -9,9 +9,9 @@ import { Entypo } from '@expo/vector-icons';
 
 export default function Notifications({navigation}) {
     const[noti,setNoti]=useState([
-        {id:'1',notiText: "You have assigned a Task  Eat the breakfast "},
-        {id:'2',notiText: "Kyaw Kyaw has assigned his report on Task “ Eat the breakfast “"},
-        {id:'3',notiText: "You have assigned a Task  Eat the breakfast "},
+        {id:'1',notiText: "Hla Hla didn't finish the task ( Research ) on time "},
+        {id:'2',notiText: "David has assigned report on Task “ Sales for new product “"},
+        {id:'3',notiText: "Megan has assigned report on Task “ Research for new product “"},
 
     ])
     
@@ -19,13 +19,13 @@ export default function Notifications({navigation}) {
         <View style={styles.container}>
             <View style={styles.headerBox}>
                 <View style={styles.headerBoxText}>
-                    <Text style={styles.title}>Employees</Text>
+                    <Text style={styles.title}>Notifications</Text>
                     <View style={styles.datebox}>
-                        <Text style={styles.date}>11/2/2020</Text>
+                        <Text style={styles.date}>12/11/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
-                  <Image  source={require('../assets/pic.jpg')} style={styles.Image}/>
+                  <Image  source={require('../assets/pic2.jpg')} style={styles.Image}/>
                 </View>
             </View>
             
@@ -33,7 +33,7 @@ export default function Notifications({navigation}) {
             <FlatList style={{height:'100%',margin:10}} data={noti} keyExtractor={(item)=>item.id}  renderItem={({item})=>(
               <View style={notiStyles.notiContainerIndividual}>
                 <View style={notiStyles.notiImageContainer}>
-                    <Image source={require('../assets/pic.jpg')} style={{height:40,width:40,alignSelf:'center'}} />
+                    <Image source={require('../assets/pic.png')} style={{height:40,width:40,alignSelf:'center'}} />
                 </View>
                 <View style={notiStyles.notiTextContainer}>
                     <Text style={{width:'100%'}}>{item.notiText}</Text>

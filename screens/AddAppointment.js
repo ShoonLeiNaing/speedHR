@@ -7,6 +7,7 @@ import {taskStyles} from '../styles'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import DatePicker from 'react-native-datepicker'
 import * as WebBrowser from 'expo-web-browser';
+import axios from 'axios'
 
 
 export default function AddAppointment({navigation}) {
@@ -19,9 +20,31 @@ export default function AddAppointment({navigation}) {
     const[url,setUrl]=useState("")
     const[state,setState]=useState(null)
     const supportedURL = "https://google.com";
-
-
+    
       const OpenURLButton = ({ url, children }) => {
+
+
+        axios.post('https://cdhx4jr2r8.execute-api.ap-south-1.amazonaws.com/Prod/meeting',
+        {
+            meetingId : "1",
+            workspaceId: "1",
+            title: title,
+            starttime : startTime,
+            endtime: endTime,
+            additionalInfo : description,
+            date:date
+
+        })
+        .then(function (response)
+        {
+            console.log(response);
+        })
+        .catch(function (error)
+        {
+            console.log(error);
+        });
+
+      
         var x=date.split("-")
         var y=startTime.split(":")
         var z=endTime.split(":")
@@ -37,16 +60,18 @@ export default function AddAppointment({navigation}) {
         }, [url])
       ;
         return <Button title={children} onPress={handlePress} />;
+
+        
       };
     
+
+
 
     return (
         
         <View style={styles.container}>
             <View style={addAppointmentStyles.reportContainer}>
-            
                 <View style={addAppointmentStyles.reportTitleContainer}>
-                    
                     <View style={addAppointmentStyles.textContainer}>
                         <Text style={{fontSize:15}}>Title :</Text>
                     </View>
@@ -55,7 +80,6 @@ export default function AddAppointment({navigation}) {
                     </View>
                 </View>
                 
-
                 <View style={addAppointmentStyles.reportTitleContainer}>
                 <View style={addAppointmentStyles.textContainer}>
                     <Text style={{fontSize:15}}>Date :</Text>

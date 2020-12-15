@@ -85,13 +85,13 @@ export default function EmployeeNewsfeed({navigation}) {
                     <View style={postStyles.postContainer}>
                         <View style={postStyles.postHeaderContainer}>
                             <View style={postStyles.employeeProfilePic}>
-                                <Image source={require('../assets/pic.jpg')} style={{height:40,width:40,alignSelf:'center'}} />
+                                <Image source={require('../assets/pic.png')} style={{height:40,width:40,alignSelf:'center'}} />
                             </View>
                             <View style={postStyles.employeeProfileName}>
                                 <Text style={{marginLeft:10}}>{item.workerId}</Text>
                             </View>
                             <View style={postStyles.postDate}>
-                                <Text style={{fontSize:10}}>{item.Postdate}</Text>
+                                <Text style={{fontSize:10}}></Text>
                             </View>
                         </View>
                         <View style={postStyles.textContainer}>

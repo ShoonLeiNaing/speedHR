@@ -31,11 +31,11 @@ export default function EmployeeList({navigation}) {
                 <View style={styles.headerBoxText}>
                     <Text style={styles.title}>Employees</Text>
                     <View style={styles.datebox}>
-                        <Text style={styles.date}>11/2/2020</Text>
+                        <Text style={styles.date}>12/11/2020</Text>
                     </View>
                 </View>
                 <View style={styles.ImageBox}>
-                  <Image  source={require('../assets/pic.jpg')} style={styles.Image}/>
+                  <Image  source={require('../assets/pic2.jpg')} style={styles.Image}/>
                 </View>
             </View>
         
@@ -44,11 +44,11 @@ export default function EmployeeList({navigation}) {
                <View style={employeeStyles.employeeContainerIndividual}>
                     <View style={employeeStyles.employeeText}>
                         <View  style={employeeStyles.number}>
-                            <Text style={{width:'100%',textAlign:'center',}}>{item.workerId}.</Text>
+                            <Text style={{width:'100%',textAlign:'center',}}></Text>
                         </View>
                         
                         <View style={employeeStyles.profilePic}>
-                            <Image  source={require('../assets/pic.jpg')} style={{height:40,width:40,borderRadius:20}} />
+                            <Image  source={require('../assets/pic.png')} style={{height:40,width:40,borderRadius:20}} />
                         </View>
 
                         <View  style={employeeStyles.name}>
